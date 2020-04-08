@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Sen&family=Ubuntu&family=Varela+Round&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
+    <!--    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Sen&family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="part1.css">
+</head>
+
+<body>
+    <!-- header -->
+    <div class="header">
+        <div class="brand">
+            <h2 class="headertag">Brand name</h2>
+        </div>
+        <div class="content">
+            <a href="#"><img src="fav.png" alt=""></a>
+            <a href="#"><img src="boosts.png" alt=""></a>
+            <a href="#"><img src="user.png" alt=""></a>
+        </div>
+    </div>
+    <div class="list">
+        <ul class="unlisteditems">
+            <li class="li">Contact us</li>
+            <li class="li">Mail</li>
+            <li class="li">Log in</li>
+            <button class="button">Sign up</button>
+            <!-- <li class="li">Projects</li> -->
+        </ul>
+    </div>
+    <div class="list2">
+        <ul class="unlist">
+            <li class="li">Contact us</li>
+            <li class="li">Ideas</li>
+            <li class="li">Projects</li>
+            <li class="li">Technology</li>
+            <li class="li">Gallery</li>
+            <li class="li">SQL</li>
+            <li class="li">Java</li>
+            <li class="li">CDN's</li>
+            <li class="li">Testimonials</li>
+            <li class="li">New Updates</li>
+            <li class="li">Source Code</li>
+            <li class="li">Tools</li>
+            <li class="li">My zone</li>
+        </ul>
+    </div>
+    <!--parallax page content -->
+    <div>
+        <!-- 1 -->
+        <div class="parallax-container">
+            <div class="parallax"><img src="water.jpg"></div>
+            <div class="aboutContent">
+                <h2 class="aboutHeader">Background For Websight</h2>
+            </div>
+        </div>
+        <section class="parallaxsection">
+            <div class="parallaxdiv">
+                <h2 class="headerattribute">Background</h2>
+                <p class="text">
+                    One of such Thread is the UI Thread which runs the whole application. Each thread has a property
+                    associated with it called IsBackground which identifies whether the Thread is running in foreground
+                    or in background. <br><br> In this websight you can get lots of background for your websight.
+                    <br><br>
+                </p>
+                <button class="button">Click here</button>
+            </div>
+        </section>
+        <!-- 2 -->
+        <div class="parallax-container">
+            <div class="parallax"><img
+                    src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+            </div>
+            <div class="aboutContent">
+                <h2 class="aboutHeader">{ Technology }</h2>
+            </div>
+        </div>
+        <section class="parallaxsection">
+            <div class="parallaxdiv">
+                <h2 class="headerattribute">Technology</h2>
+                <p class="text">
+                    My technology part specifies that what programming languages , editor we will
+                    use for make a design of a websight <br><br>
+                </p>
+                <button class="button">Click here</button>
+            </div>
+        </section>
+        <!-- 3 -->
+        <div class="parallax-container">
+            <div class="parallax"><img
+                    src="https://images.pexels.com/photos/879109/pexels-photo-879109.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+            </div>
+            <div class="aboutContent">
+                <h2 class="aboutHeader">Tips and Tricks</h2>
+            </div>
+        </div>
+        <section class="parallaxsection">
+            <div class="parallaxdiv">
+                <h2 class="headerattribute">Tips and Tricks</h2>
+                <p class="text">
+                    A lot of tips and tricks are waiting for you.Easy code are provided.
+                    Easy for learn and easy to understand. Copy the code and paste your websight and after complete your
+                    websight
+                    will be get ready for use. <br><br>
+                </p>
+                <button class="button">Click here</button>
+            </div>
+        </section>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.parallax').parallax();
+            });</script>
+    </div>
+    <!-- our services -->
+    <section class="services">
+        <h2 class="headerattribute">Our Services</h2>
+        <p class="text">
+            Your childhood teacher did not wrong you when they taught you that there should be three, or four, or
+            five sentences in a paragraph. It is important to understand, however, that the aim in teaching this was
+            not to impart a hard-and-fast rule of grammar, drawn from an authoritative-but-dusty book. The true aim
+            of this strategy was to teach you that your ideas. <br><br> must be well supported to be persuasive and
+            effective.
+        </p>
+        <div class="container">
+            <div class="serviceBx">
+                <div>
+                    <img src="design.png" alt="">
+                    <h2>Design</h2>
+                </div>
+            </div>
+            <div class="serviceBx">
+                <div>
+                    <img src="develop.png" alt="">
+                    <h2>Devolopment</h2>
+                </div>
+            </div>
+            <div class="serviceBx">
+                <div>
+                    <img src="build.png" alt="">
+                    <h2>Build</h2>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- used languages -->
+    <section class="usedlanguages">
+        <!-- 1 -->
+        <div class="languages">
+            <div class="language">
+                <h2 class="universalheader">HTML</h2>
+                <p class="text">
+                    HTML is the standard markup language for creating Web pages. <br><br>
+                    1.HTML stands for Hyper Text Markup Language. <br>
+                    2.HTML describes the structure of a Web page. <br>
+                    3.HTML consists of a series of elements. <br>
+                    4.HTML elements tell the browser how to display the content. <br>
+                    5.HTML elements are represented by tags. <br>
+                    6.HTML tags label pieces of content such as "heading", "paragraph", "table", and so on. <br>
+                    7.Browsers do not display the HTML tags, but use them to render the content of the page. <br>
+                </p>
+            </div>
+            <div class="imagebox">
+                <img src="HTML.png" alt="">
+            </div>
+        </div>
+        <!-- 2 -->
+        <div class="CSSlanguages">
+            <h2 class="universalheader">CSS</h2>
+            <div class="CSSlanguage">
+                <div class="imagebox">
+                    <img src="CSS (1).png" alt="">
+                </div>
+                <p class="text">
+                    CSS is used to define styles for your web pages, including the design, layout <br>
+                    and variations in display for different devices and screen sizes.. <br><br>
+                    1.CSS stands for Cascading Style Sheets. <br>
+                    2.CSS describes how HTML elements are to be displayed on screen, paper, or in other media. <br>
+                    3.CSS saves a lot of work. It can control the layout of multiple web pages all at once. <br>
+                    4.External stylesheets are stored in CSS files. <br>
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- about Me -->
+    <section class="aboutme">
+        <div class="aboutdiv">
+            <h2 class="universalheader">About Me</h2>
+            <p class="text">
+                Hey ,<br><br>
+                I am Raju Basak – the founder of this site, a full- <br>
+                time software developer,a programming enthusiast. <br><br><br>
+                The intention behind this blog is to help all <br>
+                my fellow programmers. <br>
+                I hope you’ll enjoy the content and find it useful! <br>
+                For any queries or suggestions, please feel free to reach <br>
+                out to me. <br><br><br>
+                Happy coding!
+            </p>
+        </div>
+    </section>
+    <!-- testimonials -->
+    <section class="testimonials">
+        <h2 class="testimonialsh2">what our customer says</h2>
+        <div class="testimonialcontent">
+            <div class="paragraphheader">
+                <p class="pText">software developer,a programming enthusiast.
+                    The intention behind this blog is to help all
+                    my fellow programmers.
+                    I hope you’ll enjoy the content and find it useful!
+                    For any queries or suggestions, please feel free to reach
+                    out to me.</p>
+            </div>
+            <div class="paragraphheader">
+                <p class="pText">software developer,a programming enthusiast.
+                    The intention behind this blog is to help all
+                    my fellow programmers.
+                    I hope you’ll enjoy the content and find it useful!
+                    For any queries or suggestions, please feel free to reach
+                    out to me.</p>
+            </div>
+        </div>
+    </section>
+    <!-- footer -->
+    <section class="footer">
+        <div class="footerdiv">
+            <div class="headerset">
+                <h3>Product</h3>
+                <div class="coloumn">
+                    <ul class="ul">
+                        <a href="#" class="ultext">
+                            <li>Templates</li>
+                        </a>
+                        <a href="#" class="ultext">
+                            <li>Features</li>
+                        </a>
+                        <a href="#" class="ultext">
+                            <li>Planes</li>
+                        </a>
+                        <a href="#" class="ultext">
+                            <li>Programs</li>
+                        </a>
+                        <a href="#" class="ultext">
+                            <li>Log in</li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+            <div class="headerset">
+                <h3>Company</h3>
+                <div class="coloumn">
+                    <ul class="ul">
+                        <a href="#" class="ultext">
+                            <li>Our Blog</li>
+                        </a>
+                        <a href="aboutme.html" class="ultext">
+                            <li>About Us</li>
+                        </a>
+                        <a href="#" class="ultext">
+                            <li>Contact Us</li>
+                        </a>
+                        <a href="#" class="ultext">
+                            <li>Reviews</li>
+                        </a>
+                        <a href="#" class="ultext">
+                            <li>T&C</li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+            <div class="headerset">
+                <h3>Support</h3>
+                <div class="coloumn">
+                    <ul class="ul">
+                        <a href="#" class="ultext">
+                            <li>Recources</li>
+                        </a>
+                        <a href="#" class="ultext">
+                            <li>Web design</li>
+                        </a>
+                        <a href="#" class="ultext">
+                            <li>Articles</li>
+                        </a>
+                        <a href="#" class="ultext">
+                            <li>FAQ</li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+            <div class="headerset">
+                <h3>BRAND NAME</h3>
+                <div class="coloumn">
+                    <p class="cText">Copyright © 2019-2020
+                        BRAND NAME Solutions
+                        Inc.
+                        All Rights Reserved.
+                        All other trademarks and
+                        copyrights are the
+                        property of their
+                        respective holderss</p>
+                </div>
+                <div class="imagebox">
+                    <a href="#"><img src="facebook.png" alt=""></a>
+                    <a href="#"><img src="ins.jpg" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
