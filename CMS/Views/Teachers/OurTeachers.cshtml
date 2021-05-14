@@ -1,0 +1,129 @@
+﻿@model Tuple<List<CMS.MODEL.Master.CourseTeacherModel>, List<CMS.MODEL.Master.TeachersEditModel>>
+
+@{
+    ViewBag.Title = "OurTeachers";
+}
+
+<!-- page title -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
+        .snip1559 {
+            font-family: 'Lato', Arial, sans-serif;
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            margin: 10px;
+            min-width: 250px;
+            max-width: 310px;
+            width: 100%;
+            background-color: #ffffff;
+            color: #2B2B2B;
+            text-align: center;
+            font-size: 16px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+        }
+
+            .snip1559 * {
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+            .snip1559 .profile-image {
+                padding: 15% 10% 0;
+            }
+
+                .snip1559 .profile-image img {
+                    max-width: 100%;
+                    vertical-align: top;
+                    position: relative;
+                    border-radius: 50%;
+                    max-width: 40%;
+                }
+
+            .snip1559 figcaption {
+                padding: 5% 10% 15%;
+            }
+
+            .snip1559 h3 {
+                font-family: 'Oswald';
+                text-transform: uppercase;
+                font-size: 20px;
+                font-weight: 400;
+                line-height: 24px;
+                margin: 3px 0;
+            }
+
+            .snip1559 h5 {
+                font-weight: 400;
+                margin: 0;
+                text-transform: uppercase;
+                color: #888;
+                letter-spacing: 1px;
+            }
+
+            .snip1559 .icons i {
+                color: #999;
+                display: inline-block;
+                margin-right: 5px;
+                font-size: 1.5em;
+            }
+
+                .snip1559 .icons i:hover {
+                    color: #555;
+                }
+
+                .snip1559 .icons i a {
+                    text-decoration: none;
+                }
+    </style>
+</head>
+<body>
+    <section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <ul class="list-inline custom-breadcrumb">
+                        <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="-link">Our teacher</a></li>
+                        <li class="list-inline-item text-white h3 font-secondary "></li>
+                    </ul>
+                    <p class="text-lighten">Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /page title -->
+    <!-- teachers -->
+    <section class="section">
+            @foreach (var item in Model.Item2)
+            {
+                <figure class="snip1559">
+                    <div class="profile-image"><img src="@item.ImagePath" alt="profile-sample2" /></div>
+                    <figcaption>
+                        <h3><a href="/Teachers/Teacher_SingleDetails?TSLid=@item.TeacherGuid">@item.TeacherName</a></h3>
+                        <h5>@item.RoleName</h5>
+                        <h5>@item.CourseName</h5>
+                        <p>Which is worse, that everyone has his price, or that the price is always so low.</p>
+                        <div class="icons" style="color:black;">
+                            <a href="#"  style="color:black"> <i class="ion-social-reddit"></i></a>
+                            <a href="#"  style="color:black"> <i class="ion-social-twitter"></i></a>
+                            <a href="#"  style="color:black"> <i class="ion-social-vimeo"></i></a>
+                        </div>
+                    </figcaption>
+                </figure>
+            }
+    </section>
+    <!-- /teachers -->
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    <script>
+        $(".hover").mouseleave(
+            function () {
+                $(this).removeClass("hover");
+            }
+        );
+
+    </script>
+</body>
+</html>

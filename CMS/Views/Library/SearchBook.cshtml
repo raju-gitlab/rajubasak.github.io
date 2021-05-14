@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "SearchBook";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <form action="/Library/RequestBook" method="post">
+            <input type="text" name="BookName" />
+            <input type="text" name="AuthorName" />
+            <input type="submit" name="Submit" />
+        </form>
+    </div>
+</body>
+</html>

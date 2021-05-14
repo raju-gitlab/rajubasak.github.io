@@ -1,0 +1,360 @@
+﻿@model CMS.MODEL.Master.ItemCode
+
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+@*<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/64d58efce2.js"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/Styles/LoginAndRegister/style.css" />
+    <title>Sign in & Sign up Form</title>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="forms-container">
+            <div class="signin-signup">
+                <form action="Login" method="post" class="sign-in-form">
+                    <h2 class="title">Sign in</h2>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="email" name="Value" placeholder="Email" />
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" name="Code" placeholder="Password" />
+                    </div>
+                    <div>
+                        <input type="submit" value="Login" class="btn solid" />
+                        <button type="button" class="btn btn-info btn-lg"><a href="/Accounts/ForgetPassword" style="text-decoration:none;color:white" target="_blank">content</a></button>
+                    </div>
+                    <p class="social-text">Or Sign in with social platforms</p>
+                    <div class="social-media">
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </form>
+                <form action="/Accounts/RegisterNewStudent" method="post" enctype="multipart/form-data" class="sign-up-form">
+                    <h2 class="title">Sign up</h2>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="StudentName" placeholder="StudentName" />
+                    </div><div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="Stream" placeholder="Stream" />
+                    </div><div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="email" name="Email" placeholder="Email" />
+                    </div><div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="file" name="StudentImageFile" />
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="password" name="Password" placeholder="Password" />
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" />
+                    </div>
+                    <input type="submit" class="btn" value="Sign up" />
+                    <p class="social-text">Or Sign up with social platforms</p>
+                    <div class="social-media">
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>New here ?</h3>
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
+                        ex ratione. Aliquid!
+                    </p>
+                    <button class="btn transparent" id="sign-up-btn">
+                        Sign up
+                    </button>
+                    <button type="button"class="btn transparent" id="sign-up-btn">
+                        <a href="/AdminPortal/AdminstrationLogin" target="_blank" >Anoter</a>
+                    </button>
+                </div>
+                <img src="~/Styles/LoginAndRegister/log.svg" class="image" alt="" />
+            </div>
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3>One of us ?</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+                        laboriosam ad deleniti.
+                    </p>
+                    <button class="btn transparent" id="sign-in-btn">
+                        Sign in
+                    </button>
+                </div>
+                <img src="~/Styles/LoginAndRegister/register.svg" class="image" alt="" />
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Styles/LoginAndRegister/app.js"></script>
+</body>
+</html>*@
+<html>
+<head>
+    <title>KITM - User Login</title>
+    <link rel="stylesheet" href="~/Styles/LoginAndRegister/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="~/Styles/GlobalCssProperties/Styleseet2.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="icon-bar">
+        <a href="/Accounts/StudentsLogin" class="twitter" title="Student Login"><i class="fas fa-user-graduate"></i></a>
+        <a href="/AdminPortal/AdminstrationLogin" class="facebook" title="Admin Login"><i class="fas fa-user-cog"></i></a>
+    </div>
+    @if (ViewBag.CredentialsError == true)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Login Failed!</strong> Your Password is wrong.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    @if (ViewBag.AccountNotActive == true)
+    {
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            Your account is not verified.Click verify link,send on your registred email address Or <a href="https://localhost:44377/Accounts/SetUserVerificationCodeAgain?Code=@Model.Value" style="display:inline;text-decoration:none;"><strong>Click Here</strong></a> for get verify again.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    @if (ViewBag.UserNotFound == true)
+    {
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+             User Not Found.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    @if (ViewBag.AccountCreated == true)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Your account is created successfylly.Plase check your mail box.Click the verificationlink to verify your account. 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    @if (ViewBag.UserAlreadyExists == true)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            This user is already exists.Plase Login.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    @if (ViewBag.CheckSuccess == true)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            Account Verified.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    <img class="wave" src="~/Styles/LoginAndRegister/wave.png">
+    <div class="container">
+        <div class="img">
+            <img src="~/Styles/LoginAndRegister/bg.svg">
+        </div>
+        <div class="login-content">
+            <form action="/Accounts/Login" method="post">
+                <img src="~/Styles/LoginAndRegister/avatar.svg">
+                <h2 class="title">Welcome</h2>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="div">
+                        <h5>User Email</h5>
+                        <input type="text" name="Value" class="input">
+                    </div>
+                </div>
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Password</h5>
+                        <input type="password" name="Code" class="input">
+                    </div>
+                </div>
+                <div style="display:flex;justify-content:space-between">
+                    <a href="#" data-toggle="modal" data-target="#exampleModal">Create Account</a>
+                    <a href="#" data-toggle="modal" data-target="#exampleModalCenter">Forgot Password?</a>
+                </div>
+                <input type="submit" class="btn" value="Login">
+            </form>
+        </div>
+    </div>
+
+    <!--Modals-->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/Accounts/ResetPassword">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" name="UserId" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New User Registration</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/Accounts/RegisterNewUser" enctype="multipart/form-data">
+                        <div>
+                            <div class="row">
+                                <div class="col-md-5 mb-5" style="text-align: center;">
+                                    <div class="form-group">
+                                        <div class="file-upload" style="height:100%">
+                                            <div class="image-upload-wrap">
+                                                <input class="file-upload-input" name="StudentImageFile" type='file' onchange="readURL(this);" accept="image/*" />
+                                                <div class="drag-text">
+                                                    <h3 style="font-size:105px"><i class="bi bi-cloud-upload"></i></h3>
+                                                </div>
+                                            </div>
+                                            <div class="file-upload-content" style="border-radius: 500px;">
+                                                <img class="file-upload-image" src="#" style="border-radius: 220px;height: 400px;" alt="Course image" />
+                                            </div>
+
+                                            <button class="file-upload-btn" style="margin-top:10px;width:40%;" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="StudentName" placeholder="Enter Name" />
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="Email" placeholder="Enter email" />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="exampleInputPassword1" name="Password" placeholder="Enter Password">
+                            </div>
+                            <div class="form-group">
+                                @Html.Action("GenderList", "Addmission")
+                            </div>
+                            <button type="submit" style="width:50%;" class="btn btn-primary btn-sm">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                ...
+            </div>
+        </div>
+    </div>
+    <!--End Modal-->
+    <script type="text/javascript" src="~/Styles/LoginAndRegister/main.js"></script>
+
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.image-upload-wrap').hide();
+
+                    $('.file-upload-image').attr('src', e.target.result);
+                    $('.file-upload-content').show();
+
+                    $('.image-title').html(input.files[0].name);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            } else {
+                removeUpload();
+            }
+        }
+
+        function removeUpload() {
+            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+            $('.file-upload-content').hide();
+            $('.image-upload-wrap').show();
+        }
+        $('.image-upload-wrap').bind('dragover', function () {
+            $('.image-upload-wrap').addClass('image-dropping');
+        });
+        $('.image-upload-wrap').bind('dragleave', function () {
+            $('.image-upload-wrap').removeClass('image-dropping');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+﻿@model CMS.MODEL.Master.DropDownListModel
+
+@{
+    ViewBag.Title = "Teacherlist";
+    Layout = null;
+}
+
+@using (Html.BeginForm("Teacherlist", "AdminPortal", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TeacherName, new SelectList(ViewBag.TeacherNames, "TeacherGuid", "TeacherName"), "Choose Teacher..", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TeacherGuid, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+}
+

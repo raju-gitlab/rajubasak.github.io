@@ -1,0 +1,5 @@
+G:\Projects_Raju\CMS\CMS\CMS.MODEL\bin\Debug\CMS.MODEL.dll
+G:\Projects_Raju\CMS\CMS\CMS.MODEL\bin\Debug\CMS.MODEL.pdb
+G:\Projects_Raju\CMS\CMS\CMS.MODEL\obj\Debug\CMS.MODEL.dll
+G:\Projects_Raju\CMS\CMS\CMS.MODEL\obj\Debug\CMS.MODEL.pdb
+G:\Projects_Raju\CMS\CMS\CMS.MODEL\obj\Debug\CMS.MODEL.csprojResolveAssemblyReference.cache

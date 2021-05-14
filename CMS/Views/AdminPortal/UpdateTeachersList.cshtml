@@ -1,0 +1,32 @@
+﻿@model Tuple<List<CMS.MODEL.Master.CourseTeacherModel>, List<CMS.MODEL.Master.TeachersEditModel>>
+
+@{
+    ViewBag.Title = "UpdateTeachersList";
+    Layout = null;
+}
+
+<section class="section">
+    <div class="container">
+        <!-- course list -->
+        <div class="row justify-content-center">
+            <!-- course item -->
+            @foreach (var item in Model.Item1)
+            {
+                <div class="col-lg-4 col-sm-6 mb-5">
+                    <div class="card p-0 border-primary rounded-0 hover-shadow" @*data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="1000"*@>
+                        <img class="card-img-top rounded-0" src="@Url.Content(@item.ImagePath)" alt="Teacher thumb">
+                        <div class="card-body">
+                            <ul class="list-inline mb-2">
+                                <li class="list-inline-item" @*data-aos="fade-right"*@>@item.RoleName</li>
+                            </ul>
+                            <a href="/AdminPortal/TeacherCourseDetails?TID=@item.TeacherGuid">
+                                <h4 class="card-title" @*data-aos="fade-right" data-aos-delay="250"*@>@item.TeacherName</h4>
+                            </a>
+                            <a href="/AdminPortal/UpdateTeacherData?TID=@item.TeacherGuid" id="TeacherData" class="btn btn-primary btn-sm" @*data-aos="fade-up" data-aos-delay="300"*@>Update Data</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,22 @@
+﻿@model CMS.MODEL.Master.DropDownListModel
+
+@{
+    ViewBag.Title = "SubjectList";
+    Layout = null;
+}
+
+@using (Html.BeginForm("SubjectList", "AdminPortal", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Subejct, new SelectList(ViewBag.SubjectNames, "SubejctGuid", "Subejct"), "Choose Role..", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SubejctGuid, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+}
+

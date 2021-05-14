@@ -1,0 +1,113 @@
+﻿@model Tuple<List<CMS.MODEL.Event.EventCardModel>, List<CMS.MODEL.Event.EventCardModel>>
+@{
+    ViewBag.Title = "Events";
+}
+<!-- page title -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600;900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/4b9ba14b0f.js" crossorigin="anonymous"></script>
+    <link href="~/Styles/Event/ViewEventCards/EventCard.css" rel="stylesheet" />
+    <link href="~/Styles/GlobalCssProperties/GlobalProperties.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    <section class="page-title-section overlay" data-background="@Url.Content("d")">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <ul class="list-inline custom-breadcrumb" data-aos="fade-right" data-aos-delay="100">
+                        <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="">Events</a></li>
+                        <li class="list-inline-item text-white h3 font-secondary"></li>
+                    </ul>
+                    <p class="text-lighten" data-aos="fade-right" data-aos-delay="200">Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /page title -->
+    <!-- courses -->
+    <section class="section">
+        <div>
+            <h4 class="TexTAlignmentMiddle" data-aos="fade-up" data-aos-delay="300">Current Events</h4>
+        </div>
+        <div class="container">
+            
+            <div class="row">
+                <!-- event -->
+                @foreach (var item in Model.Item1)
+                {
+                    <div class="col-lg-4 col-sm-6 mb-5">
+                        <div class="card rounded-0 hover-shadow" data-aos="flip-left">
+                            <div class="card-img position-relative">
+                                <img class="card-img-top rounded-0" src= "@Url.Content(@item.ImagePath)" alt="event thumb">
+                                <div class="card-date"><span>@item.EventDate.Day</span><br>@item.MonthName</div>
+                            </div>
+                            <div class="card-body background-white">
+                                <h4 class="card-title" data-aos="fade-up">@item.EventName</h4>
+                                <!-- location -->
+                                <p data-aos="fade-up" data-aos-delay="150"><i class="ti-calendar text-primary mr-2"></i><strong>Date : </strong>@item.EventDate.Date.ToShortDateString()</p>
+                                <p  data-aos="fade-up" data-aos-delay="250"><i class="ti-location-pin text-primary mr-2"></i><strong>Place : </strong><a style="color:black;text-decoration:none;font-size:14px" target="_blank" href="@item.Location">@item.EventPlace</a></p>
+                                @*<p><i class="ti-location-pin text-primary mr-2"></i></p>
+                                <p><i class="ti-location-pin text-primary mr-2"></i>@item.Location</p>
+                                <p><i class="ti-location-pin text-primary mr-2"></i>@item.Location</p>*@
+                                <p class="card-text mb-4"  data-aos="fade-up" data-aos-delay="350">
+                                    @item.EventShortDetails
+                                </p>
+                            </div>
+                            <a href="/Event/EventSchedules?EviD=@item.EventGuid" class="btn btn-primary btn-sm">View Event</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        <a href="/Event/AllEvents" class="btn btn-primary btn-sm MIddleAlignmentButton" style="transform: translate(-50%, -4px);" data-aos="fade-up" data-aos-delay="300">Show More</a>
+        </div>
+        <div>
+        </div>
+    </section>
+    <section class="section">
+        <div>
+            <h4 class="TexTAlignmentMiddle">Upcoming Events</h4>
+        </div>
+        <div class="container">
+            <div class="row">
+                <!-- event -->
+                @foreach (var item2 in Model.Item2)
+                {
+                    if (item2 != null)
+                    {
+                        <div class="col-lg-4 col-sm-6 mb-5">
+                            <div class="card border-0 rounded-0 hover-shadow" data-aos="flip-left" data-aos-easing="ease-out-cubic"data-aos-duration="1000">
+                                <div class="card-img position-relative">
+                                    <img class="card-img-top rounded-0" src="@Url.Content(@item2.ImagePath)" alt="event thumb">
+                                    <div class="card-date"><span>@item2.EventDate.Day</span><br>@item2.EventDate.Month</div>
+                                </div>
+                                <div class="card-body background-white">
+                                    <!-- location -->
+                                    <p data-aos="fade-up">
+                                        <i class="ti-location-pin text-primary mr-2"></i>@item2.Location
+                                    </p>
+                                    <p class="card-text mb-4" data-aos="fade-up" data-aos-delay="100">
+                                        @item2.EventShortDetails
+                                    </p>
+                                </div>
+                                <a href="/Event/EventSchedules?EviD=@item2.EventGuid" class="btn btn-primary btn-sm" data-aos="zoom-in">View Event</a>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="mainbox">
+                            <div class="msg">No Content Available<p>Let's go <a href="#">home</a> and try from there.</p></div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </section>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>

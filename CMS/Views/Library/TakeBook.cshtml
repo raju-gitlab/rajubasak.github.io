@@ -1,0 +1,114 @@
+﻿@model CMS.MODEL.Library.LibraryRecordsEditModel
+
+@{
+    ViewBag.Title = "TakeBook";
+}
+
+<section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <ul class="list-inline custom-breadcrumb">
+                    <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="page-link">UpdateCourseData</a></li>
+                    <li class="list-inline-item text-white h3 font-secondary"></li>
+                </ul>
+                <p class="text-lighten">Do you have other questions? Don't worry, there aren't any dumb questions. Just fill out the form below and we'll get back to you as soon as possible.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section bg-gray">
+    <div class="container">
+        @if (ViewBag.AlreadyBookTaken == true)
+        {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                User Already Take Book From Library.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+        @if (ViewBag.UserPassedOut == true)
+        {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                This Card Owner Is Passed Out from College.Can't Procees this Card.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+        @if (ViewBag.Success == true)
+        {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Success</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+        @if (ViewBag.OutOfStock == true)
+        {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                This Book Is Currently OutOfStock.Come back Later othwise take another Book.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-sm-6 mb-5">
+                <div class="card p-0 border-primary rounded-0 hover-shadow" style="background-color:black">
+                    <div class="card-body background-white" style="background-image:url(https://i.pinimg.com/564x/46/d7/36/46d736b130ea4a9664a2050bc9288a1c.jpg)">
+                        <form action="/Library/TakeBook" method="post">
+                            <div>
+                                <div class="form-group">
+                                    <div class="col">
+                                        <label for="inputPassword6">LibraryCard SerialNumber<span style="padding-right:35px;"></span></label>
+                                        <input style="height:37px" type="text" name="LibraryCardSerialNumber" class="form-control" placeholder="Enter Number">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col">
+                                        <label for="inputPassword6">BookSerial Numeber<span style="padding-right:35px;"></span></label>
+                                        <input style="height:37px" type="number" name="BookSerialNumber" class="form-control" placeholder="Enter Number">
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <div class="col">
+                                        <label for="inputPassword6">Stream <span style="padding-right:35px;"></span></label>
+                                        @Html.DropDownListFor(model => model.StreamGuid, new SelectList(ViewBag.StreamList, "StreamGuid", "Stream"), "Select stream...", new { @class = "form-control mb-3" })
+                                        @Html.ValidationMessageFor(model => model.StreamGuid, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col">
+                                        <label for="inputPassword6">Semester <span style="padding-right:19px;"></span> </label>
+                                        @Html.DropDownListFor(model => model.SemesterGuid, new SelectList(" "), "Select semester...", new { @class = "form-control mb-3" })
+                                        @Html.ValidationMessageFor(model => model.SemesterGuid, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <br />
+                                <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#StreamGuid").change(function () {
+            $.get("/Addmission/SemesterListById", { StreamGuid: $("#StreamGuid").val() }, function (data) {
+                $("#SemesterGuid").empty();
+                $.each(data, function (index, row) {
+                    $("#SemesterGuid").append("<option value='" + row.SemesterGuid + "'>" + row.Semester + "</option>")
+                })
+            })
+        })
+    });
+</script>
+

@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "UploadEventImages";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <ul class="list-inline custom-breadcrumb">
+                        <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="-link">Uplaod Event Images</a></li>
+                        <li class="list-inline-item text-white h3 font-secondary "></li>
+                    </ul>
+                    <p class="text-lighten">Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="card" style="width: 24rem;top: 50%;left: 50%;transform: translate(-50%,17%);margin-bottom: 115px;">
+        <h5 style="font-family: 'Ubuntu', sans-serif;" class="card-header">UPLOAD IMAGES</h5>
+        <div class="card-body">
+            <form id="stURL" method="post" action="/AdminPortal/UploadEventImages" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Enter Name</label>
+                    <input type="text" name="Code" value="Event 2020(This is Just Example)" class="form-control" id="exampleInputEmail1" placeholder="EventName Year" required>
+                    <small id="emailHelp" class="form-text text-muted">***You can use EventName Otherwise customized Your Own But Don't use same***</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Upload Files</label>
+                    <input style="padding:3px" type="file" name="UploadFiles" class="form-control" id="exampleInputPassword1" placeholder="Password" multiple required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm"  onclick="myFunction()">Small button</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function myFunction() {
+            const arguments = new URLSearchParams(window.location.search);
+            var EvntId = arguments.get('EvID');
+            document.getElementById("stURL").action = "/AdminPortal/UploadEventImages?Value=" + EvntId;
+        }
+    </script>
+</body>
+</html>

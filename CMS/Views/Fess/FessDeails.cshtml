@@ -1,0 +1,104 @@
+﻿@model Tuple<List<CMS.MODEL.Addmission.StudentFessDetails>, List<CMS.MODEL.Addmission.StudentFessEditModel>>
+@{
+    ViewBag.Title = "FessDeails";
+}
+
+<h2>FessDeails</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.Display("SemesterName")
+        </th>
+        <th>
+            @Html.Display("TotalAmount")
+        </th>
+        <th>
+            @Html.Display("PaidFess")
+        </th>
+        <th>
+            @Html.Display("DueFessAmount")
+        </th>
+        <th>
+            @Html.Display("FineAmount")
+        </th>
+        <th>
+            @Html.Display("FessPaidDate")
+        </th>
+    </tr>
+
+    @foreach (var item2 in Model.Item2)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item2.SemesterName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item2.TotalAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item2.PaidFess)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item2.DueFessAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item2.FineAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item2.FessPaidDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit","", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "FessDeails", "Fess", new { StudentGuid = item2.StudentGuid }) |
+                @Html.ActionLink("Pay", "UpdateFess","Fess", new { StudentGuid =item2.StudentGuid  })
+            </td>
+        </tr>
+    }
+</table>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.Display("StudentName")
+        </th>
+        <th>
+            @Html.Display("Stream")
+        </th>
+        <th>
+            @Html.Display("AddmissionYear")
+        </th>
+        <th>
+            @Html.Display("StudentImagepath")
+        </th>
+        <th>
+            @Html.Display("CurrentSemester")
+        </th>
+    </tr>
+
+    @foreach (var item1 in Model.Item1)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item1.StudentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item1.Stream)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item1.AddmissionYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item1.StudentImagepath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item1.CurrentSemester)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "FessDeails", "Fess", new { /*StudentGuid = item.StudentGuid*/ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+</table>

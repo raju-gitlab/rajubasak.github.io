@@ -1,0 +1,65 @@
+﻿@model List<CMS.MODEL.User.StudentModel>
+
+@{
+    ViewBag.Title = "PassedOutStudents";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <ul class="list-inline custom-breadcrumb">
+                        <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="page-link">UpdateCourseData</a></li>
+                        <li class="list-inline-item text-white h3 font-secondary"></li>
+                    </ul>
+                    <p class="text-lighten">Do you have other questions? Don't worry, there aren't any dumb questions. Just fill out the form below and we'll get back to you as soon as possible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding: 57px;">
+        <div class="container">
+            <p>Search Anything in the input field to search the table:</p>
+            <input class="form-control" id="myInput" type="text" placeholder="Search Names...">
+            <br>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>StudentName</th>
+                        <th>StreamName</th>
+                        <th>SemesterName</th>
+                        <th>Links</th>
+                    </tr>
+                </thead>
+                <tbody id="myTable">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.StudentName</td>
+                            <td>@item.Stream</td>
+                            <td>@item.Semester</td>
+                            <td><a href="#" target="_blank" class="class=" btn btn-primary btn-sm"">View Details</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+</body>
+</html>

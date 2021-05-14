@@ -1,0 +1,260 @@
+﻿@model CMS.MODEL.Addmission.AddmissionEditModel
+
+@{
+    ViewBag.Title = "NewAddmission";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title></title>
+</head>
+<body>
+
+    <section class="page-title-section overlay" style="background-image: url('')">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <ul class="list-inline custom-breadcrumb" @*data-aos="fade-right" data-aos-delay="250"*@>
+                        <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="courses.html">Courses</a></li>
+                        <li class="list-inline-item text-white h3 font-secondary nasted">Students Addmisssion</li>
+                    </ul>
+                    <p class="text-lighten" @*data-aos="fade-right" data-aos-delay="350"*@>Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding: 57px;">
+        <h4 style="font-size: 33px; position: relative;left: 50%;transform: translate(-10%, -50%);">Addmission Form</h4>
+        <div style="padding: 40px 60px 43px 60px;background-color: aliceblue;border-radius: 23px;">
+            <div>
+                <form action="/Addmission/NewAddmission" method="post" enctype="multipart/form-data">
+                    <div>
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="validationCustom01">First name</label>
+                                <input type="text" name="FirstName" class="form-control" id="validationCustom01" placeholder="First name" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationCustom02">Middle name</label>
+                                <input type="text" name="MiddleName" class="form-control" id="validationCustom02" placeholder="Middle name">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationCustomUsername">Last name</label>
+                                <div class="input-group">
+                                    <input type="text" name="LastName" class="form-control" id="validationCustomUsername" placeholder="Last name" aria-describedby="inputGroupPrepend" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="validationCustom01">Parent name</label>
+                                <input type="text" name="ParentName" class="form-control" id="validationCustom01" placeholder="Parent name" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationCustom02">Addmission Year</label>
+                                <input type="text" name="AddmissionYear" class="form-control" id="validationCustom02" placeholder="Addmission Year" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationCustom02">Blood Group</label>
+                                <input type="text" name="BloodGroup" class="form-control" id="validationCustom02" placeholder="Blood Group" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="validationCustom01">Email</label>
+                                <input type="text" name="Email" class="form-control" id="validationCustom01" placeholder="Email" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationCustom02">Contact Number</label>
+                                <input type="text" name="ContactNumber" class="form-control" id="validationCustom02" placeholder="Contact Number" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationCustom02">Contact Number</label>
+                                <input type="text" name="ContactNumberOpt" class="form-control" id="validationCustom02" placeholder="Contact Number Optional">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Address</label>
+                            <input type="text" name="AddressLine1" class="form-control" id="inputAddress" placeholder="AddressLine">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress2">Address 2</label>
+                            <input type="text" name="AddressLine2" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="inputState">Country</label>
+                                @Html.DropDownListFor(model => model.CountryGuid, new SelectList(ViewBag.CountryList, "CountryGuid", "Country"), "Select State...", new { @class = "form-control mb-3" })
+                                @Html.ValidationMessageFor(model => model.CountryGuid, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputState">State</label>
+                                @Html.DropDownListFor(model => model.StateGuid, new SelectList(" "), "Select State...", new { @class = "form-control mb-3" })
+                                @Html.ValidationMessageFor(model => model.StateGuid, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputState">City</label>
+                                @Html.DropDownListFor(model => model.CityCode, new SelectList(" "), "Select City...", new { @class = "form-control mb-3" })
+                                @Html.ValidationMessageFor(model => model.CityCode, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="inputZip">ZipCode</label>
+                                    <input type="number" name="ZipCode" class="form-control" id="inputZip">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputAddress">Upload StudentImage</label>
+                                    <input type="file" name="StudentImageFile" class="form-control" id="inputAddress" placeholder="Upload Student Image">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputAddress2">Date Of Birth</label>
+                                    <input type="date" name="DateOfBirth" class="form-control" id="inputAddress2" placeholder="Date Of Birth">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputAddress2">Paid Addmission FessAmount</label>
+                                    <input type="number" name="Fess" class="form-control" id="inputAddress2" placeholder="Enter Amount" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="inputCity">Stream or Course</label>
+                                @Html.DropDownListFor(model => model.StreamGuid, new SelectList(ViewBag.StreamList, "StreamGuid", "Stream"), "Select stream...", new { @class = "form-control mb-3" })
+                                @Html.ValidationMessageFor(model => model.StreamGuid, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputCity">Semester</label>
+                                @Html.DropDownListFor(model => model.SemesterGuid, new SelectList(" "), "Select semester...", new { @class = "form-control mb-3" })
+                                @Html.ValidationMessageFor(model => model.SemesterGuid, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputCity">Gender</label>
+                                @Html.DropDownListFor(model => model.GenderGuid, new SelectList(ViewBag.GenderList, "GenderGuid", "Gender"), "Select Gender...", new { @class = "form-control mb-3" })
+                                @Html.ValidationMessageFor(model => model.GenderGuid, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <hr />
+                        <h5 style="font-size: 30px;font-family: 'Jura', sans-serif;">
+                            Documents
+                        </h5>
+                        <hr />
+                        <div class="form-row">
+                            <div class="col-md-3 mb-3">
+                                <label for="validationTooltip05">Qualification</label>
+                                <input type="text" name="QualiFication" class="form-control" id="validationTooltip05" placeholder="Last Qualification" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="validationTooltip05">Higher Secondery Board</label>
+                                <input type="text" name="Board" class="form-control" id="validationTooltip05" placeholder="Name Of Board" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="validationTooltip05">Total Number</label>
+                                <input type="text" name="TotalNumber" class="form-control" id="validationTooltip05" placeholder="Total Number" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="validationTooltip05">Percentage In HS</label>
+                                <input type="text" name="Percentage" class="form-control" id="validationTooltip05" placeholder="Percentage In HS" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="validationTooltip05">Upload MarksheetImage</label>
+                                <input type="file" name="Fileupload" class="form-control" id="validationTooltip05" placeholder="Percentage In HS" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-3 mb-3">
+                                <label for="validationTooltip05">Qualification</label>
+                                <input type="text" name="QualiFication" class="form-control" id="validationTooltip05" placeholder="Last Qualification" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="validationTooltip05">Higher Secondery Board</label>
+                                <input type="text" name="Board" class="form-control" id="validationTooltip05" placeholder="Name Of Board" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="validationTooltip05">Total Number</label>
+                                <input type="text" name="TotalNumber" class="form-control" id="validationTooltip05" placeholder="Total Number" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="validationTooltip05">Percentage In HS</label>
+                                <input type="text" name="Percentage" class="form-control" id="validationTooltip05" placeholder="Percentage In HS" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="validationTooltip05">Upload MarksheetImage</label>
+                                <input type="file" name="Fileupload" class="form-control" id="validationTooltip05" placeholder="Percentage In HS" required>
+                            </div>
+                        </div>
+                        @*<div class="form-group row">
+                                <label for="inputAddress2">Document Path 1</label>
+                                <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                                <label class="custom-file-label" for="validatedCustomFile">Madhyamik Marksheet</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlFile1">Example file input</label>
+                                <input type="file" class="form-control" id="inputAddress" placeholder="Upload Student Image">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAddress2">Document Path 1</label>
+                                <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                                <label class="custom-file-label">Choose file...</label>
+                            </div>
+                            <div class="custom-file">
+                                <label for="inputAddress2">Document Path 1</label>
+                                <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                                <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                            </div>*@
+                        @*<div class="form-row">
+                                <div class="col-md-3 mb-3">
+                                    <label for="validationTooltip05">Zip</label>
+                                    <input type="text" class="form-control" id="validationTooltip05" placeholder="Zip" required>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="validationTooltip05">Zip</label>
+                                    <input type="text" class="form-control" id="validationTooltip05" placeholder="Zip" required>
+                                </div>
+                            </div>*@
+
+                        <input type="submit" value="Submit" class="btn btn-primary btn-sm">
+                        <input type="reset" value="Reset" class="btn btn-primary btn-sm">
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $("#CountryGuid").change(function () {
+            $.get("/Addmission/StateListById", { CountryGuid: $("#CountryGuid").val() }, function (data) {
+                $("#StateGuid").empty();
+                $.each(data, function (index, row) {
+                    $("#StateGuid").append("<option value='" + row.StateGuid + "'>" + row.State + "</option>")
+                })
+            })
+        })
+    });
+    $(document).ready(function () {
+        $("#StateGuid").change(function () {
+            $.get("/Addmission/CityListById", { StateGuid: $("#StateGuid").val() }, function (data) {
+                $("#CityCode").empty();
+                $.each(data, function (index, row) {
+                    $("#CityCode").append("<option value='" + row.CityCode + "'>" + row.City + "</option>")
+                })
+            })
+        })
+    });
+    $(document).ready(function () {
+        $("#StreamGuid").change(function () {
+            $.get("/Addmission/SemesterListById", { StreamGuid: $("#StreamGuid").val() }, function (data) {
+                $("#SemesterGuid").empty();
+                $.each(data, function (index, row) {
+                    $("#SemesterGuid").append("<option value='" + row.SemesterGuid + "'>" + row.Semester + "</option>")
+                })
+            })
+        })
+        });
+
+    </script>
+</body>
+</html>

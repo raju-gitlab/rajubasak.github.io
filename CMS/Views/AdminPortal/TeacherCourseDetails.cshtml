@@ -1,0 +1,69 @@
+﻿@model Tuple<CMS.MODEL.Master.CourseTeacherModel, List<CMS.MODEL.Master.DropDownListModel>>
+
+@{
+    ViewBag.Title = "TeacherCourseDetails";
+}
+
+<section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <ul class="list-inline custom-breadcrumb">
+                    <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="page-link">Adminstration Portal</a></li>
+                    <li class="list-inline-item text-white h3 font-secondary">xs</li>
+                </ul>
+                <p class="text-lighten">Do you have other questions? Don't worry, there aren't any dumb questions. Just fill out the form below and we'll get back to you as soon as possible.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section bg-gray">
+    <div class="container">
+        <!-- course list -->
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-sm-6 mb-5">
+                <div class="card p-0 border-primary rounded-0 hover-shadow">
+                    <img class="card-img-top rounded-0" src="@Url.Content(@Model.Item1.ImagePath)" alt="Teacher thumb">
+                    <div class="card-body background-white">
+                        <ul class="list-inline mb-2">
+                            <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
+                            <li class="list-inline-item"><a class="text-color" href="#">Humanities</a></li>
+                        </ul>
+                        <a href="course-single.html">
+                            <h4 class="card-title">@Model.Item1.TeacherName</h4>
+                        </a>
+                        <p class="card-text mb-4">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            incididunt ut labore et dolore magna.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>CourseName</th>
+                    <th>SemesterName</th>
+                    <th>SubjectName</th>
+                    <th>Links</th>
+                </tr>
+            </thead>
+            <tbody id="myTable">
+                @foreach (var item2 in Model.Item2)
+                {
+                    <tr>
+                        <td>@item2.Course</td>
+                        <td>@item2.Semester</td>
+                        <td>@item2.Subejct</td>
+                        <td><a href="/AdminPortal/RemoveCourseTeacher?CourseGuid=@item2.CourseGuid&SemesterGuid=@item2.SemesterGuid&SubejctGuid=@item2.SubejctGuid&TeacherGuid=@Model.Item1.TeacherGuid" target="_blank" class="class=" btn btn-primary btn-sm"">Delete</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</section>

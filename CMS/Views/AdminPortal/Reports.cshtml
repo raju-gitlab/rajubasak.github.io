@@ -1,0 +1,80 @@
+﻿@model List<CMS.MODEL.Master.ContactUsModel>
+
+@{
+    ViewBag.Title = "Reports";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <ul class="list-inline custom-breadcrumb">
+                        <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="page-link">AdminPortal</a></li>
+                        <li class="list-inline-item text-white h3 font-secondary">Reports</li>
+                    </ul>
+                    <p class="text-lighten">Do you have other questions? Don't worry, there aren't any dumb questions. Just fill out the form below and we'll get back to you as soon as possible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section bg-gray">
+        <div class="container">
+            @foreach (var item in Model)
+            {
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex bd-highlight">
+                            <div class="p-2 flex-grow-1 bd-highlight">Title : @item.ReportSubject</div>
+                            @if (item.IsRead == false)
+                            {
+                                <div class="p-2 bd-highlight">Status : <span class="alert alert-danger">Not Seen</span></div>
+                            }
+                            else
+                            {
+                                <div class="p-2 bd-highlight">Status : <span class="alert alert-success">Seen</span></div>
+                            }
+                            @if (item.ReportImagePath != null && item.ReportImagePath != string.Empty)
+                            {
+                                <div class="p-2 bd-highlight"><a href="@item.ReportImagePath" target="_blank"><i class="bi bi-eye-fill" style="color:black;cursor:pointer;font-size:20px;"></i></a></div>
+                            }
+                            else
+                            {
+                                <div></div>
+                            }
+                            <div class="p-2 bd-highlight"><a href="/AdminPortal/ReadReport?RID=@item.ReportGuid" id="ReportId" class="">Read</a></div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>@item.ReportDetails</p>
+                            <hr />
+                            <footer class="blockquote-footer">Reported By <cite title="Source Title">@item.CustomerName,@item.CustomerEmail</cite></footer>
+                        </blockquote>
+                    </div>
+                </div>
+
+                <br /><br />
+            }
+        </div>
+    </section>
+    @*<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script>
+        function ReadStatusFunction()
+        {
+            var ReportId = document.getElementById("ReportId").href;
+            var splitData = ReportId.split('/');
+            $.ajax({
+
+                type: "POST",
+                url: "/AdminPortal/ReadReport",
+                data: { RID: splitData[4] }
+            })
+        }
+    </script>*@
+</body>
+</html>

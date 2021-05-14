@@ -1,0 +1,20 @@
+﻿@model CMS.MODEL.Master.DropDownListModel
+
+@{
+    ViewBag.Title = "SemesterList";
+    Layout = null;
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="">
+    <div class="">
+        <div class="">
+            @Html.DropDownListFor(model => model.SemesterGuid, new SelectList(ViewBag.SemesterList, "SemesterGuid", "Semester"), "Select Your semester", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.SemesterGuid, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    </div>
+}

@@ -1,0 +1,238 @@
+﻿@model List<CMS.MODEL.Addmission.StudentFessDetails>
+
+@{
+    ViewBag.Title = "FindStudentList";
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        .modal-dialog-full-width {
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            max-width: none !important;
+        }
+
+        .modal-content-full-width {
+            height: auto !important;
+            min-height: 100% !important;
+            border-radius: 0 !important;
+            background-color: #ececec !important
+        }
+
+        .modal-header-full-width {
+            border-bottom: 1px solid #9ea2a2 !important;
+        }
+
+        .modal-footer-full-width {
+            border-top: 1px solid #9ea2a2 !important;
+        }
+    </style>
+    <script src=" https://unpkg.com/read-excel-file@4.1.0/bundle/read-excel-file.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+   
+    <!-- Material Design Bootstrap -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <!-- Material Design Bootstrap -->
+    <!-- Your custom styles (optional) -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+</head>
+<body>
+    <section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <ul class="list-inline custom-breadcrumb">
+                        <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="page-link">Fess</a></li>
+                        <li class="list-inline-item text-white h3 font-secondary"></li>
+                    </ul>
+                    <p class="text-lighten">Do you have other questions? Don't worry, there aren't any dumb questions. Just fill out the form below and we'll get back to you as soon as possible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section bg-gray">
+        <div class="container">
+            <!-- course list -->
+            <div class="row justify-content-center">
+                <!-- course item -->
+                @foreach (var item in Model)
+            {
+                    <div class="col-lg-4 col-sm-6 mb-5">
+                        <div class="card p-0 border-primary rounded-0 hover-shadow" @*data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="1000"*@>
+                            <img class="card-img-top rounded-0" src="@Url.Content(@item.StudentImagepath)" alt="course thumb">
+                            <div class="card-body background-white">
+                                <ul class="list-inline mb-2">
+                                    <li class="list-inline-item" @*data-aos="fade-right" data-aos-delay="150"*@><a class="text-color" id="StreamId" href="@item.CourseGuid">@item.Stream</a></li>
+                                    <li class="list-inline-item" @*data-aos="fade-right" data-aos-delay="150"*@><a class="text-color" id="SemesterId" href="@item.SemesterGuid">@item.CurrentSemester</a></li>
+                                </ul>
+                                <a href="@item.StudentGuid" id="StudentId">
+                                    <h4 class="card-title" id="StudentName" @*data-aos="fade-right" data-aos-delay="250"*@>@item.StudentName</h4>
+                                </a>
+                                <a hidden href="@item.FessDocumentpath" id="StudentFessFile">
+                                    <h4 class="card-title" id="StudentName" @*data-aos="fade-right" data-aos-delay="250"*@>@item.StudentName</h4>
+                                </a>
+                                <p class="card-text mb-4" @*data-aos="fade-right" data-aos-delay="250"*@>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna.
+                                </p>
+                                <button type="button" onclick="Myfunction()" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalPreview">Click Here</button>
+                                @*<a href="/Fess/UpdateFess?ciD=@item.StudentGuid" class="btn btn-primary btn-sm" @*data-aos="fade-up" data-aos-delay="300">Apply now</a>*@
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+    <!-- Extra large modal -->
+    <div class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+        <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
+            <div class="modal-content-full-width modal-content ">
+                <div class=" modal-header-full-width   modal-header text-center">
+                    <h5 class="modal-title w-100" id="exampleModalPreviewLabel">
+                        Fess Details and Deposit
+                    </h5>
+                    <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                        <span style="font-size: 1.3em;" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="input">Upload studentFess File </label>
+                            <input class="form-control" type="file" id="input" />
+                        </div>
+                        <div class="col">
+                            <label for="input">Upload studentFess File </label> <br />
+                            <a href="#" id="setStudentFessFile" download> <button type="button" class="btn btn-primary btn-sm">Downlad</button> </a>
+                        </div>
+                    </div>
+                    <table id="tbl-data" class="table table-bordered"></table>
+                    <form action="/Fess/UpdateFess" method="post" enctype="multipart/form-data">
+                        <div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <label>Student Name</label>
+                                    <select id="NameDropdown" name="StudentGuid" class="form-control" style="-webkit-appearance: none;">
+                                        <option id="setvalue" value="vjv">sdbcjbdb </option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label>Course Name</label>
+                                    <select id="CourseDropdown" name="CourseGuid" class="form-control" style="-webkit-appearance: none;">
+                                        <option id="Coursesetvalue" value="">sdbcjbdb </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <label>Semester Name</label>
+                                    <select id="SemesterDropdown" name="SemesterGuid" class="form-control" style="-webkit-appearance: none;">
+                                        <option id="Semestersetvalue" value="">sdbcjbdb </option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <small>Fess Amount</small>
+                                    <input type="number" name="PaidFess" class="form-control" placeholder="Addmission Year">
+                                </div>
+                            </div>
+                            <br />
+                            <button type="submit" class="btn btn-primary btn-sm" formtarget="_blank">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <p> 1st Click the download link button.When file download is completed then Upload file in the specified Field</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        function Myfunction() {
+            var i = document.getElementById("StreamId").href;
+            var CourseName = document.getElementById("StreamId").innerHTML;
+
+            var j = document.getElementById("SemesterId").href;
+            var SemesterName = document.getElementById("SemesterId").innerHTML;
+
+            var k = document.getElementById("StudentId").href;
+            var studentName = document.getElementById("StudentName").textContent;
+
+            var l = document.getElementById("StudentFessFile").href;
+
+            var split1 = i.split('/');
+
+            var split2 = j.split('/');
+
+            var split3 = k.split('/');
+
+
+            document.getElementById("setvalue").value = split3[4];
+            document.getElementById("setvalue").innerHTML = studentName;
+
+            document.getElementById("Coursesetvalue").value = split1[4];
+            document.getElementById("Coursesetvalue").innerHTML = CourseName;
+
+            document.getElementById("Semestersetvalue").value = split2[4];
+            document.getElementById("Semestersetvalue").innerHTML = SemesterName;
+
+            document.getElementById("setStudentFessFile").href = l;
+
+        }
+
+        var input = document.getElementById('input');
+        input.addEventListener('change', function () {
+            readXlsxFile(input.files[0]).then(function (data) {
+                var i = 0;
+                data.map((row, index) => {
+                    if (i == 0) {
+                        let table = document.getElementById('tbl-data');
+                        generateTableHead(table, row);
+                    }
+                    if (i > 0) {
+                        let table = document.getElementById('tbl-data');
+                        generateTableRows(table, row);
+                    }
+
+                    i++;
+                });
+            });
+        });
+        function generateTableHead(table, data) {
+            let thead = table.createTHead();
+            let row = thead.insertRow();
+            for (let key of data) {
+                let th = document.createElement('th');
+                let text = document.createTextNode(key);
+                th.appendChild(text);
+                row.appendChild(th);
+            }
+        }
+        function generateTableRows(table, data) {
+            let newRow = table.insertRow(-1);
+            data.map((row, index) => {
+                let newCell = newRow.insertCell();
+                let newText = document.createTextNode(row);
+                newCell.appendChild(newText);
+            });
+        }
+    </script>
+</body>
+</html>

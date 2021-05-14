@@ -1,0 +1,65 @@
+﻿@model IEnumerable<CMS.MODEL.Master.CourseEditModel>
+@{
+    ViewBag.Title = "Courses";
+}
+<!-- page title -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    <section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <ul class="list-inline custom-breadcrumb" data-aos="fade-right" data-aos-anchor="#example-anchor" data-aos-offset="500" data-aos-duration="800">
+                        <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="courses.html">Our Courses</a></li>
+                        <li class="list-inline-item text-white h3 font-secondary "></li>
+                    </ul>
+                    <p class="text-lighten" data-aos="fade-right" data-aos-anchor="#example-anchor" data-aos-offset="500" data-aos-duration="800" data-aos-delay="250">Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /page title -->
+    <!-- courses -->
+    <section class="section">
+        <div class="container">
+            <!-- course list -->
+            <div class="row justify-content-center">
+                <!-- course item -->
+                @foreach (var item in Model)
+            {
+                    <div class="col-lg-4 col-sm-6 mb-5">
+                        <div class="card p-0 border-primary rounded-0 hover-shadow" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="1000">
+                            <img class="card-img-top rounded-0" src="@Url.Content(@item.CourseImagePath)" alt="course thumb">
+                            <div class="card-body background-white">
+                                <ul class="list-inline mb-2">
+                                    <li class="list-inline-item" data-aos="fade-right"><i class="ti-calendar mr-1 text-color"></i>02-14-2018</li>
+                                    <li class="list-inline-item" data-aos="fade-right" data-aos-delay="150"><a class="text-color" href="#">@item.CourseType</a></li>
+                                </ul>
+                                <a href="course-single.html">
+                                    <h4 class="card-title" data-aos="fade-right" data-aos-delay="250">@Html.DisplayFor(model => item.CourseName)</h4>
+                                </a>
+                                <p class="card-text mb-4" data-aos="fade-right" data-aos-delay="250">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna.
+                                </p>
+                                <a href="/Course/CourseDetails?ciD=@item.CourseGuid" class="btn btn-primary btn-sm" data-aos="fade-up" data-aos-delay="300">Apply now</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- /course list -->
+            <!-- course list -->
+            <!-- /course list -->
+        </div>
+    </section>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <!-- /courses -->
+</body>
+</html>

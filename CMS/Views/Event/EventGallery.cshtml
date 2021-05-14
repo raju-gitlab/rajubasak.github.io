@@ -1,0 +1,60 @@
+﻿@model List<CMS.MODEL.Event.EventGalleryModel>
+
+@{
+    ViewBag.Title = "EventGallery";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600;900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/4b9ba14b0f.js" crossorigin="anonymous"></script>
+    <link href="~/Styles/Event/ViewEventCards/EventCard.css" rel="stylesheet" />
+    <link href="~/Styles/GlobalCssProperties/GlobalProperties.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    <section class="page-title-section overlay" data-background="@Url.Content("d")">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <ul class="list-inline custom-breadcrumb" data-aos="fade-right" data-aos-delay="100">
+                        <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="">Event Gallery</a></li>
+                        <li class="list-inline-item text-white h3 font-secondary"></li>
+                    </ul>
+                    <p class="text-lighten" data-aos="fade-right" data-aos-delay="200">Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /page title -->
+    <!-- courses -->
+    <section class="section">
+        @*<div>
+            <h4 class="TexTAlignmentMiddle" data-aos="fade-up" data-aos-delay="300">Current Events</h4>
+        </div>*@
+        <div class="container">
+
+            <div class="row">
+                <!-- event -->
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-sm-6 mb-5">
+                        <div class="card rounded-0 hover-shadow" data-aos="flip-left">
+                            <div class="card-img position-relative">
+                                <img class="card-img-top rounded-0" src="@Url.Content(@item.ImageFolderPath)" alt="event thumb">
+                            </div>
+                            <a href="/Event/EventImages?EvID=@item.Code" class="btn btn-primary btn-sm">View Photos</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div>
+        </div>
+    </section>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>

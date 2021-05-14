@@ -1,0 +1,21 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Jura:wght@500&display=swap');
+.results tr[visible='false'],
+.no-result {
+    display: none;
+}
+
+.results tr[visible='true'] {
+    display: table-row;
+}
+
+.counter {
+    padding: 8px;
+    color: #ccc;
+}
+.modal-full {
+    min-width: 100%;
+}
+
+    .modal-full .modal-content {
+        min-height: 100vh;
+    }

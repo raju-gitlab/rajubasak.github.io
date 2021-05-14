@@ -1,0 +1,594 @@
+﻿@model Tuple<List<CMS.MODEL.Master.CourseEditModel>, List<CMS.MODEL.Event.EventCardModel>, List<CMS.MODEL.Master.CourseTeacherModel>>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<!-- slider -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="~/Scripts/ImageSliderJS/jssor.slider-28.1.0.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        window.jssor_1_slider_init = function () {
+
+            var jssor_1_SlideshowTransitions = [
+                { $Duration: 500, $Delay: 40, $Cols: 10, $Rows: 5, $Opacity: 2, $Clip: 15, $SlideOut: true, $Easing: $Jease$.$OutQuad },
+                { $Duration: 800, x: 0.25, $Zoom: 1.5, $Easing: { $Left: $Jease$.$InWave, $Zoom: $Jease$.$InCubic }, $Opacity: 2, $ZIndex: -10, $Brother: { $Duration: 800, x: -0.25, $Zoom: 1.5, $Easing: { $Left: $Jease$.$InWave, $Zoom: $Jease$.$InCubic }, $Opacity: 2, $ZIndex: -10 } },
+                { $Duration: 400, $Delay: 40, $Rows: 10, $Formation: $JssorSlideshowFormations$.$FormationStraight, $Opacity: 2, $Assembly: 260 },
+                { $Duration: 800, $Opacity: 2 },
+                { $Duration: 800, x: 0.3, y: 0.3, $Cols: 2, $Rows: 2, $During: { $Left: [0.3, 0.7], $Top: [0.3, 0.7] }, $SlideOut: true, $ChessMode: { $Column: 3, $Row: 12 }, $Easing: { $Left: $Jease$.$InCubic, $Top: $Jease$.$InCubic, $Opacity: $Jease$.$Linear }, $Opacity: 2 },
+                { $Duration: 800, $Zoom: 1, $Rotate: 0.5, $Easing: { $Rotate: $Jease$.$InSine, $Zoom: $Jease$.$Swing }, $Opacity: 2, $Brother: { $Duration: 800, $Zoom: 11, $Rotate: -0.5, $Easing: { $Rotate: $Jease$.$InSine, $Zoom: $Jease$.$Swing }, $Opacity: 2, $Shift: 200 } },
+                { $Duration: 800, $Zoom: 11, $Easing: { $Zoom: $Jease$.$InOutExpo }, $Opacity: 2, $Brother: { $Duration: 600, $Zoom: 1.5, $Easing: { $Zoom: $Jease$.$InOutExpo }, $Opacity: 2, $Shift: -100 } }
+            ];
+
+            var jssor_1_options = {
+                $AutoPlay: 1,
+                $PauseOnHover: 3,
+                $SlideshowOptions: {
+                    $Class: $JssorSlideshowRunner$,
+                    $Transitions: jssor_1_SlideshowTransitions,
+                    $TransitionsOrder: 1
+                },
+                $ArrowNavigatorOptions: {
+                    $Class: $JssorArrowNavigator$
+                },
+                $BulletNavigatorOptions: {
+                    $Class: $JssorBulletNavigator$,
+                    $SpacingX: 16,
+                    $SpacingY: 16
+                }
+            };
+
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+            //make sure to clear margin of the slider container element
+            jssor_1_slider.$Elmt.style.margin = "";
+
+            /*#region responsive code begin*/
+
+            /*
+                parameters to scale jssor slider to fill parent container
+
+                MAX_WIDTH
+                    prevent slider from scaling too wide
+                MAX_HEIGHT
+                    prevent slider from scaling too high, default value is original height
+                MAX_BLEEDING
+                    prevent slider from bleeding outside too much, default value is 1
+                    0: contain mode, allow up to 0% to bleed outside, the slider will be all inside parent container
+                    1: cover mode, allow up to 100% to bleed outside, the slider will cover full area of parent container
+                    0.1: flex mode, allow up to 10% to bleed outside, this is better way to make full window slider, especially for mobile devices
+            */
+
+            var MAX_WIDTH = 3000;
+            var MAX_HEIGHT = 3000;
+            var MAX_BLEEDING = 1;
+
+            function ScaleSlider() {
+                var containerElement = jssor_1_slider.$Elmt.parentNode;
+                var containerWidth = containerElement.clientWidth;
+
+                if (containerWidth) {
+                    var originalWidth = jssor_1_slider.$OriginalWidth();
+                    var originalHeight = jssor_1_slider.$OriginalHeight();
+
+                    var containerHeight = containerElement.clientHeight || originalHeight;
+
+                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+                    var expectedHeight = Math.min(MAX_HEIGHT || containerHeight, containerHeight);
+
+                    //scale the slider to expected size
+                    jssor_1_slider.$ScaleSize(expectedWidth, expectedHeight, MAX_BLEEDING);
+
+                    //position slider at center in vertical orientation
+                    jssor_1_slider.$Elmt.style.top = ((containerHeight - expectedHeight) / 2) + "px";
+
+                    //position slider at center in horizontal orientation
+                    jssor_1_slider.$Elmt.style.left = ((containerWidth - expectedWidth) / 2) + "px";
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+
+            function OnOrientationChange() {
+                ScaleSlider();
+                window.setTimeout(ScaleSlider, 800);
+            }
+
+            ScaleSlider();
+
+            $Jssor$.$AddEvent(window, "load", ScaleSlider);
+            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+            $Jssor$.$AddEvent(window, "orientationchange", OnOrientationChange);
+            /*#endregion responsive code end*/
+        };
+    </script>
+    <style>
+        /*jssor slider bullet skin 131 css*/
+        .jssorb106 {
+            position: absolute;
+        }
+
+            .jssorb106 .i {
+                position: absolute;
+                cursor: pointer;
+            }
+
+                .jssorb106 .i .b {
+                    fill: #000;
+                    fill-opacity: 0.5;
+                    stroke: #fff;
+                    stroke-width: 1800;
+                    stroke-miterlimit: 10;
+                    stroke-opacity: 0.8;
+                }
+
+                .jssorb106 .i:hover .b {
+                    fill: #fff;
+                    fill-opacity: 1;
+                    stroke: #2b1908;
+                    stroke-opacity: 1;
+                }
+
+            .jssorb106 .iav .b {
+                fill: #fff;
+                fill-opacity: 1;
+                stroke-width: 1800;
+                stroke: #46d1d3;
+                stroke-opacity: 0.6;
+            }
+
+            .jssorb106 .i.idn {
+                opacity: .3;
+            }
+
+        .jssora051 {
+            display: block;
+            position: absolute;
+            cursor: pointer;
+        }
+
+            .jssora051 .a {
+                fill: none;
+                stroke: #fff;
+                stroke-width: 360;
+                stroke-miterlimit: 10;
+            }
+
+            .jssora051:hover {
+                opacity: .8;
+            }
+
+            .jssora051.jssora051dn {
+                opacity: .5;
+            }
+
+            .jssora051.jssora051ds {
+                opacity: .3;
+                pointer-events: none;
+            }
+    </style>
+</head>
+<body>
+    <section class="hero-section overlay bg-cover" data-background="https://images.pexels.com/photos/462146/pexels-photo-462146.jpeg">
+        <div class="container">
+            <div class="hero-slider">
+                <!-- slider item -->
+                <div class="hero-slider-item">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h1 class="text-white" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".1">Your bright future is our mission</h1>
+                            <p class="text-muted mb-4" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".4">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor
+                                incididunt ut labore et
+                                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exer
+                            </p>
+                            <a href="contact.html" class="btn btn-primary btn-sm" data-animation-out="fadeOutRight" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInLeft" data-delay-in=".7">Apply now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- slider item -->
+                <div class="hero-slider-item">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h1 class="text-white" data-animation-out="fadeOutUp" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInDown" data-delay-in=".1">Your bright future is our mission</h1>
+                            <p class="text-muted mb-4" data-animation-out="fadeOutUp" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInDown" data-delay-in=".4">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor
+                                incididunt ut labore et
+                                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exer
+                            </p>
+                            <a href="contact.html" class="btn btn-primary btn-sm" data-animation-out="fadeOutUp" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInDown" data-delay-in=".7">Apply now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- slider item -->
+                <div class="hero-slider-item">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h1 class="text-white" data-animation-out="fadeOutDown" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">Your bright future is our mission</h1>
+                            <p class="text-muted mb-4" data-animation-out="fadeOutDown" data-delay-out="5" data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".4">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor
+                                incididunt ut labore et
+                                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exer
+                            </p>
+                            <a href="contact.html" class="btn btn-primary btn-sm" data-animation-out="fadeOutDown" data-delay-out="5" data-duration-in=".3" data-animation-in="zoomIn" data-delay-in=".7">Apply now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /hero slider -->
+    <!-- banner-feature -->
+    <section class="bg-gray overflow-md-hidden">
+        <div class="container-fluid p-0">
+            <div class="row no-gutters">
+                <div class="col-xl-4 col-lg-5 align-self-end">
+                    <img class="img-fluid w-100" style="transform: translate(10px, -89px);height: 500px;" src="https://www.thebalancesmb.com/thmb/W1kyNbcrZjxJz2Fw-6BUmalZ440=/824x824/smart/filters:no_upscale()/GettyImages-551427839-56a492fb3df78cf772830b4f.jpg" alt="banner-feature">
+                </div>
+                <div class="col-xl-8 col-lg-7">
+                    <div class="row feature-blocks bg-gray justify-content-between successblockbackgroundcolor">
+                        <div class="col-sm-6 col-xl-5 mb-xl-5 mb-lg-3 mb-4 text-center text-sm-left">
+                            <i class="ti-book mb-xl-4 mb-lg-3 mb-4 feature-icon"></i>
+                            <h3 class="mb-xl-4 mb-lg-3 mb-4">Scholorship News</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                                et dolore magna aliqua. Ut enim ad
+                            </p>
+                        </div>
+                        <div class="col-sm-6 col-xl-5 mb-xl-5 mb-lg-3 mb-4 text-center text-sm-left">
+                            <i class="ti-blackboard mb-xl-4 mb-lg-3 mb-4 feature-icon"></i>
+                            <h3 class="mb-xl-4 mb-lg-3 mb-4">Our Notice Board</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                                et dolore magna aliqua. Ut enim ad
+                            </p>
+                        </div>
+                        <div class="col-sm-6 col-xl-5 mb-xl-5 mb-lg-3 mb-4 text-center text-sm-left">
+                            <i class="ti-agenda mb-xl-4 mb-lg-3 mb-4 feature-icon"></i>
+                            <h3 class="mb-xl-4 mb-lg-3 mb-4">Our Achievements</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                                et dolore magna aliqua. Ut enim ad
+                            </p>
+                        </div>
+                        <div class="col-sm-6 col-xl-5 mb-xl-5 mb-lg-3 mb-4 text-center text-sm-left">
+                            <i class="ti-write mb-xl-4 mb-lg-3 mb-4 feature-icon"></i>
+                            <h3 class="mb-xl-4 mb-lg-3 mb-4">Admission Now</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                                et dolore magna aliqua. Ut enim ad
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br /><br />
+
+    </section>
+    <!-- /banner-feature -->
+    <!-- about us -->
+    <section class="section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 order-2 order-md-1">
+                    <h2 class="section-title" data-aos="fade-right">About KITM</h2>
+                    <p data-aos="fade-right">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat </p>
+                    <p data-aos="fade-right">cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+                    <a href="about.html" class="btn btn-primary-outline btn-sm" data-aos="fade-up">Learn more</a>
+                </div>
+                <div class="col-md-6 order-1 order-md-2 mb-4 mb-md-0">
+                    <img class="img-fluid w-100" src="https://lh5.googleusercontent.com/p/AF1QipPa-dOzAMUtHn8vtDeU5G_sZSYU4V5y236pdV12=w203-h152-k-no" alt="about image">
+                </div>
+            </div>
+        </div>
+       
+    </section>
+    
+    <!-- /about us -->
+    <div style="position:relative;top:0;left:0;width:100%;height:100%;overflow:hidden;">
+        <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:1366px;height:768px;overflow:hidden;visibility:hidden;">
+            <!-- Loading Screen -->
+            <div data-u="loading" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-position:50% 50%;background-repeat:no-repeat;background-image:url('img/double-tail-spin-x.svg');background-color:rgba(0, 0, 0, 0.7);background-size:40px 40px;"></div>
+            <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:1366px;height:768px;overflow:hidden;">
+                <div>/
+                    <img data-u="image" src="https://scontent.fccu3-1.fna.fbcdn.net/v/t1.6435-9/75491827_102373724570706_6034826421254225920_n.jpg?_nc_cat=108&ccb=1-3&_nc_sid=e3f864&_nc_ohc=rOpvcoJKwR4AX9lYKJP&_nc_ht=scontent.fccu3-1.fna&oh=f029091d492602b02b65147b80a6af06&oe=60B0F1B9" />
+                </div>
+                <div>
+                    <img data-u="image" src="https://scontent.fccu3-1.fna.fbcdn.net/v/t1.6435-9/123061214_222522079222536_1103999536146813210_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=e3f864&_nc_ohc=FNymvM1zgd4AX-L7eac&_nc_oc=AQnGo9co9j3Iphqk_MdUlepBQHAxGeEzOjpnOCiTMKdk_K081cg-fkgmP6UZcP3sa1I&_nc_ht=scontent.fccu3-1.fna&oh=451c14017a5398692c2dfd0360ef5fe4&oe=60B1B019" />
+                </div>
+                <div>
+                    <img data-u="image" src="https://scontent.fccu3-1.fna.fbcdn.net/v/t1.6435-9/75435830_102372654570813_4895909782797418496_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=174925&_nc_ohc=tX9tprVgc4cAX_p3KTp&_nc_ht=scontent.fccu3-1.fna&oh=03b960d28238a054a04c34d27e2df647&oe=60AEEA36" />
+                </div>
+                <div>
+                    <img data-u="image" src="https://media.istockphoto.com/photos/birthday-party-background-picture-id1127386041?k=6&m=1127386041&s=612x612&w=0&h=aVSjY_b_pXMmgKcj88crCpyZKtb-1beEAZSpEam5n2w=" />
+                </div>
+                <div>
+                    <img data-u="image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI6rDhXq7kzo-rFgdIQWHSjKRHCCrCy7xSvA&usqp=CAU" />
+                </div>
+                <div>
+                    <img data-u="image" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-zoom-backgrounds-free-hallmark-gazebo-1587413598.jpg?crop=1xw:1xh;center,top&resize=480:*" />
+                </div>
+            </div><a data-scale="0" href="https://www.jssor.com" style="display:none;position:absolute;">carousel html</a>
+            <!-- Bullet Navigator -->
+            <div data-u="navigator" class="jssorb106" style="position:absolute;bottom:16px;right:16px;" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+                <div data-u="prototype" class="i" style="width:12px;height:12px;">
+                    <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                        <path class="b" d="M11400,13800H4600c-1320,0-2400-1080-2400-2400V4600c0-1320,1080-2400,2400-2400h6800 c1320,0,2400,1080,2400,2400v6800C13800,12720,12720,13800,11400,13800z"></path>
+                    </svg>
+                </div>
+            </div>
+            <!-- Arrow Navigator -->
+            <div data-u="arrowleft" class="jssora051" style="width:55px;height:55px;top:0px;left:25px;" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+                <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
+                </svg>
+            </div>
+            <div data-u="arrowright" class="jssora051" style="width:55px;height:55px;top:0px;right:25px;" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+                <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <!-- courses -->
+    <section class="section-sm">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex align-items-center section-title justify-content-between">
+                        <h2 class="mb-0 text-nowrap mr-3" data-aos="fade-right">Our Courses</h2>
+                        <div class="border-top w-100 border-primary d-none d-sm-block"></div>
+                        <div>
+                            <a href="/Course/Courses" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block" data-aos="fade-left">see all</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- course list -->
+            <div class="row justify-content-center">
+                <!-- course items -->
+                @foreach (var Item1 in Model.Item1)
+            {
+                    <div class="col-lg-4 col-sm-6 mb-5">
+                        <div class="card p-0 border-primary rounded-0 hover-shadow borderstyleproperty">
+                            <img class="card-img-top rounded-0" src="@Item1.CourseImagePath" alt="course thumb">
+                            <div class="card-body card-bodyBgColor">
+                                <ul class="list-inline mb-2">
+                                    <li class="list-inline-item"><i class="ti-calendar mr-1 text-color"></i>to add date</li>
+                                    <li class="list-inline-item"><a class="text-color" href="#">@Item1.CourseType</a></li>
+                                </ul>
+                                <a href="course-single.html">
+                                    <h4 class="card-title">@Item1.CourseName</h4>
+                                </a>
+                                <p class="card-text mb-4">
+                                    @Item1.CourseDetails
+                                </p>
+                                <a href="course-single.html" class="btn btn-primary btn-sm left">Apply now</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- /course list -->
+            <!-- mobile see all button -->
+            <div class="row">
+                <div class="col-12 text-center">
+                    <a href="courses.html" class="btn btn-sm btn-primary-outline d-sm-none d-inline-block">sell all</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /courses -->
+    <!-- cta -->
+    <section class="section bg-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h6 class="text-white font-secondary mb-0">Click to Join the Advance Workshop</h6>
+                    <h2 class="section-title text-white">Training In Advannce Networking</h2>
+                    <a href="contact.html" class="btn btn-secondary btn-sm">join now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /cta -->
+    <!-- success story -->
+    <section class="section bg-cover" data-background="https://image.freepik.com/free-photo/abstract-blur-defocused-bookshelf-library_1203-9640.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-4 position-relative success-video" data-aos="zoom-in" data-aos-delay="500">
+                    <a class="play-btn venobox" href="https://youtu.be/nA1Aqp0sPQo" data-vbtype="video">
+                        <i class="ti-control-play"></i>
+                    </a>
+                </div>
+                <div class="col-lg-6 col-sm-8" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="background-white p-5">
+                        <h2 class="section-title" data-aos="fade-left" data-aos-duration="400">Success Stories</h2>
+                        <p data-aos="fade-right" data-aos-duration="600">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat.</p>
+                        <p data-aos="fade-right" data-aos-duration="600">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /success story -->
+    <!-- events -->
+    <section class="section bg-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex align-items-center section-title justify-content-between">
+                        <h2 class="mb-0 text-nowrap mr-3" data-aos="fade-right">Upcoming Events</h2>
+                        <div class="border-top w-100 border-primary d-none d-sm-block"></div>
+                        <div>
+                            <a href="/Event/UpcomingEvents" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block" data-aos="fade-left">see all</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <!-- event -->
+                @foreach (var Item2 in Model.Item2)
+            {
+                    <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+                        <div class="card border-0 rounded-0 hover-shadow">
+                            <div class="card-img position-relative">
+                                <img class="card-img-top rounded-0" src="@Item2.ImagePath" alt="event thumb">
+                                <div class="card-date"><span>18</span><br>December</div>
+                            </div>
+                            <div class="card-body card-bodyBgColor">
+                                <!-- location -->
+                                <p><i class="ti-location-pin text-primary mr-2"></i>@Item2.Location</p>
+                                <a href="event-single.html"><h4 class="card-title">Lorem ipsum dolor amet, consectetur adipisicing.</h4></a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <!-- mobile see all button -->
+            <div class="row">
+                <div class="col-12 text-center">
+                    <a href="course.html" class="btn btn-sm btn-primary-outline d-sm-none d-inline-block">sell all</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /events -->
+    <!-- teachers -->
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex align-items-center section-title justify-content-between">
+                        <h2 class="mb-0 text-nowrap mr-3" data-aos="fade-right">Our Teachers</h2>
+                        <div class="border-top w-100 border-primary d-none d-sm-block"></div>
+                        <div>
+                            <a href="/Teachers/OurTeachers" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block" data-aos="fade-left">see all</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <!-- teacher -->
+                @foreach (var Item3 in Model.Item3)
+            {
+                    <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+                        <div class="card border-0 rounded-0 hover-shadow">
+                            <img class="card-img-top rounded-0" src="@Url.Content(@Item3.ImagePath)" alt="teacher">
+                            <div class="card-body card-bodyBgColor">
+                                <a href="teacher-single.html/@Item3.TeacherGuid">
+                                    <h4 class="card-title" data-aos="fade-up">@Item3.TeacherName</h4>
+                                </a>
+                                <p data-aos="fade-up">@Item3.RoleName</p>
+                                <ul class="list-inline">
+                                    <li class="list-inline-item"  data-aos="fade-up" data-aos-duration="500"><a class="text-color" href="@Item3.SocialLink1" ><i class="ti-facebook"></i></a></li>
+                                    <li class="list-inline-item"  data-aos="fade-up" data-aos-duration="650"><a class="text-color" href="@Item3.SocialLink2" ><i class="ti-twitter-alt"></i></a></li>
+                                    <li class="list-inline-item"  data-aos="fade-up" data-aos-duration="800"><a class="text-color" href="@Item3.SocialLink3" ><i class="ti-google"></i></a></li>
+                                    <li class="list-inline-item"  data-aos="fade-up" data-aos-duration="950"><a class="text-color" href="@Item3.SocialLink4" ><i class="ti-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </section>
+    <!-- /teachers -->
+    <br /><br />
+    <!-- blog -->
+    <section class="section pt-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex align-items-center section-title justify-content-between">
+                        <h2 class="mb-0 text-nowrap mr-3">Latest News</h2>
+                        <div class="border-top w-100 border-primary d-none d-sm-block"></div>
+                        <div>
+                            <a href="/Event/UpcomingEvents" class="btn btn-sm btn-primary-outline ml-sm-3 d-none d-sm-block">see all</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <!-- blog post -->
+                <article class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+                    <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
+                        <img class="card-img-top rounded-0" src="images/blog/post-1.jpg" alt="Post thumb">
+                        <div class="card-body card-bodyBgColor">
+                            <!-- post meta -->
+                            <ul class="list-inline mb-3">
+                                <!-- post date -->
+                                <li class="list-inline-item mr-3 ml-0">August 28, 2018</li>
+                                <!-- author -->
+                                <li class="list-inline-item mr-3 ml-0">By Somrat Sorkar</li>
+                            </ul>
+                            <a href="blog-single.html">
+                                <h4 class="card-title">Lorem ipsum dolor amet, adipisicing eiusmod tempor.</h4>
+                            </a>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicin</p>
+                            <a href="blog-single.html" class="btn btn-primary btn-sm">read more</a>
+                        </div>
+                    </div>
+                </article>
+                <!-- blog post -->
+                <article class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+                    <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
+                        <img class="card-img-top rounded-0" src="images/blog/post-2.jpg" alt="Post thumb">
+                        <div class="card-body">
+                            <!-- post meta -->
+                            <ul class="list-inline mb-3">
+                                <!-- post date -->
+                                <li class="list-inline-item mr-3 ml-0">August 13, 2018</li>
+                                <!-- author -->
+                                <li class="list-inline-item mr-3 ml-0">By Jonathon Drew</li>
+                            </ul>
+                            <a href="blog-single.html">
+                                <h4 class="card-title">Lorem ipsum dolor amet, adipisicing eiusmod tempor.</h4>
+                            </a>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicin</p>
+                            <a href="blog-single.html" class="btn btn-primary btn-sm">read more</a>
+                        </div>
+                    </div>
+                </article>
+                <!-- blog post -->
+                <article class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+                    <div class="card rounded-0 border-bottom border-primary border-top-0 border-left-0 border-right-0 hover-shadow">
+                        <img class="card-img-top rounded-0" src="images/blog/post-3.jpg" alt="Post thumb">
+                        <div class="card-body">
+                            <!-- post meta -->
+                            <ul class="list-inline mb-3">
+                                <!-- post date -->
+                                <li class="list-inline-item mr-3 ml-0">August 24, 2018</li>
+                                <!-- author -->
+                                <li class="list-inline-item mr-3 ml-0">By Alex Pitt</li>
+                            </ul>
+                            <a href="blog-single.html">
+                                <h4 class="card-title">Lorem ipsum dolor amet, adipisicing eiusmod tempor.</h4>
+                            </a>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicin</p>
+                            <a href="blog-single.html" class="btn btn-primary btn-sm">read more</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+    <!-- /blog -->
+    <!--Script Section-->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script type="text/javascript">
+        jssor_1_slider_init();
+        AOS.init();
+    </script>
+    <!--End Script Section-->
+</body>
+</html>

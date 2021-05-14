@@ -1,0 +1,80 @@
+﻿@model List<CMS.MODEL.Book.BooksModel>
+
+@{
+    ViewBag.Title = "ListBooks";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="~/Styles/GlobalCssProperties/Library.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="page-title-section overlay" data-background="https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGlicmFyeXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <ul class="list-inline custom-breadcrumb">
+                        <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="page-link">Library</a></li>
+                        <li class="list-inline-item text-white h3 font-secondary"></li>
+                    </ul>
+                    <p class="text-lighten">Do you have other questions? Don't worry, there aren't any dumb questions. Just fill out the form below and we'll get back to you as soon as possible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <!-- Search functionality -->
+            <nav class="navbar navbar-light justify-content-center mt-4">
+                <form class="form-inline">
+                    <input class="form-control form-control-lg mr-sm-2" style="border-radius:30px;" type="search" placeholder="Type a name" aria-label="Search" id="search">
+                    <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+                </form>
+            </nav>
+            <!-- Cards -->
+            <div class=" row justify-content-center">
+                @foreach (var item in Model)
+                {
+                    <div class="card-Searchfunc col-lg-4 col-sm-6 mb-5">
+                        <div class="card card-shadow text-center">
+                            <img src="@Url.Content(item.BookImagePath)" />
+                            <div class="card-body">
+                                <h4 class="card-title">@item.BookName</h4>
+                                <p class="card-text">@item.Course</p>
+                                <div class="dropdown-divider"></div>
+                                <p class="card-text"><small class="text-muted">Team A</small></p>
+                                <a href="#">
+                                    <button type="button" class="btn btn-outline-primary">Email</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+
+        </div>
+    </section>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script>
+        jQuery.expr[':'].contains = function (a, i, m) {
+            return jQuery(a).text().toUpperCase()
+                .indexOf(m[3].toUpperCase()) >= 0;
+        };
+
+        $('#search').keyup(function () {
+            $('.card').removeClass('d-none');
+            var filter = $(this).val();
+            $('.card-Searchfunc').find('.card .card-body h4:not(:contains("' + filter + '"))').parent().parent().addClass('d-none');
+        })
+
+        $('#btnSort').click(function () {
+            $('.card-Searchfunc .card').sort(function (a, b) {
+                return $(a).find(".card-title").text() > $(b).find(".card-title").text() ? 1 : -1;
+            }).appendTo(".card-Searchfunc");
+        })
+    </script>
+</body>
+</html>
+

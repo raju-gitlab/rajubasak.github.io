@@ -1,0 +1,29 @@
+﻿@model CMS.MODEL.Master.DropDownListModel
+
+@{
+    ViewBag.Title = "Dropdown";
+    Layout = null;
+}
+
+@using (Html.BeginForm("Dropdown", "Library",FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Stream, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Stream, new SelectList(ViewBag.StreamList, "StreamGuid", "Stream"), "Select Your Stream", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.StreamGuid, "", new { @class = "text-danger" })
+            </div>
+        </div>
+         <div class="form-group">
+        @Html.LabelFor(model => model.Semester, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Semester, new SelectList(ViewBag.SemesterList, "SemesterGuid", "Semester"), "Select Your Semester", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.SemesterGuid, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    </div>
+}

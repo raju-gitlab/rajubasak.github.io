@@ -1,0 +1,71 @@
+﻿@model CMS.MODEL.Master.DropDownListModel
+
+@{
+    ViewBag.Title = "EditStudent";
+}
+
+<section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <ul class="list-inline custom-breadcrumb">
+                    <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="page-link">Serach Students</a></li>
+                    <li class="list-inline-item text-white h3 font-secondary"></li>
+                </ul>
+                <p class="text-lighten">Do you have other questions? Don't worry, there aren't any dumb questions. Just fill out the form below and we'll get back to you as soon as possible.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section bg-gray">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8&w=1000&q=80" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <form method="post" action="/AdminPortal/EditStudent" class="form-inline">
+                                <div class="form-group">
+                                    <label for="inputPassword6">Stream <span style="padding-right:35px;"></span></label>
+                                    @Html.DropDownListFor(model => model.StreamGuid, new SelectList(ViewBag.StreamList, "StreamGuid", "Stream"), "Select stream...", new { @class = "form-control mb-3" })
+                                    @Html.ValidationMessageFor(model => model.StreamGuid, "", new { @class = "text-danger" })
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label for="inputPassword6">Semester <span style="padding-right:19px;"></span> </label>
+                                    @Html.DropDownListFor(model => model.SemesterGuid, new SelectList(" "), "Select semester...", new { @class = "form-control mb-3" })
+                                    @Html.ValidationMessageFor(model => model.SemesterGuid, "", new { @class = "text-danger" })
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label for="inputPassword6">Year</label>
+                                    <input type="number" name="Value" id="inputPassword6" class="form-control mx-sm-3" aria-describedby="passwordHelpInline">
+                                </div>
+                                <br />
+                                <button type="submit" class="btn btn-primary btn-sm" style="position: absolute;top: 75%;left: 50%;transform: translate(-50%, -50%);">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#StreamGuid").change(function () {
+            $.get("/Addmission/SemesterListById", { StreamGuid: $("#StreamGuid").val() }, function (data) {
+                $("#SemesterGuid").empty();
+                $.each(data, function (index, row) {
+                    $("#SemesterGuid").append("<option value='" + row.SemesterGuid + "'>" + row.Semester + "</option>")
+                })
+            })
+        })
+    });
+</script>

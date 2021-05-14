@@ -1,0 +1,94 @@
+﻿@model IEnumerable<CMS.MODEL.Master.CourseTeacherModel>
+
+@{
+    ViewBag.Title = "ResignTeacherList";
+}
+
+<section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <ul class="list-inline custom-breadcrumb">
+                    <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="page-link">ResignTeacherList</a></li>
+                    <li class="list-inline-item text-white h3 font-secondary"></li>
+                </ul>
+                <p class="text-lighten">Do you have other questions? Don't worry, there aren't any dumb questions. Just fill out the form below and we'll get back to you as soon as possible.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <!-- course list -->
+        <div class="row justify-content-center">
+            <!-- course item -->
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-sm-6 mb-5">
+                    <div class="card p-0 border-primary rounded-0 hover-shadow" @*data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="1000"*@>
+                        <img class="card-img-top rounded-0" src="@Url.Content(@item.ImagePath)" alt="Teacher thumb">
+                        <div class="card-body">
+                            <ul class="list-inline mb-2">
+                                <li class="list-inline-item" @*data-aos="fade-right"*@>@item.RoleName</li>
+                            </ul>
+                            <a href="/AdminPortal/TeacherCourseDetails?TID=@item.TeacherGuid">
+                                <h4 class="card-title" @*data-aos="fade-right" data-aos-delay="250"*@>@item.TeacherName</h4>
+                            </a>
+                            <a href="/AdminPortal/TeacherCourseDetails?TID=@item.TeacherGuid&TName=@item.TeacherName" id="TeacherData" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-primary btn-sm" onclick="MyFunction()" @*data-aos="fade-up" data-aos-delay="300"*@>View Details</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/AdminPortal/Resignteacher" id="myForm">
+                    <div>
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">Teacher Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">Teacher Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="TeacherId" value="">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Resign Date</label>
+                            <div class="col-sm-10">
+                                <input type="date" name="" class="form-control" id="inputPassword" placeholder="Enter Date">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function MyFunction()
+    {
+        var data = document.getElementById("TeacherData").href;
+        var dataSplit = data.split('=');
+        var TeacherName = dataSplit[2];
+        var TeacherID = dataSplit[1];
+        document.getElementById("staticEmail").value = TeacherName;
+        document.getElementById("TeacherId").value = TeacherID;
+    }
+</script>

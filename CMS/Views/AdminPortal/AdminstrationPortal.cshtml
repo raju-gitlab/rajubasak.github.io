@@ -1,0 +1,1924 @@
+﻿
+@model Tuple<List<CMS.MODEL.Library.BookBusinessModel>, List<CMS.MODEL.Library.RequestBookModel>, List<CMS.MODEL.Event.EventCardModel>, List<CMS.MODEL.Book.BooksModel>>
+
+@{
+    ViewBag.Title = "KITM - Admin Portal";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="~/Styles/Tables/ModalTables.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        #myBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: red;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+            #myBtn:hover {
+                background-color: #555;
+            }
+    </style>
+</head>
+<body>
+    <section class="page-title-section overlay" data-background="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOodASbmRhyyL6RrwGiKHUEWzsdGRubNyUmQ&usqp=CAU">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <ul class="list-inline custom-breadcrumb">
+                        <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="page-link">Adminstration Portal</a></li>
+                        <li class="list-inline-item text-white h3 font-secondary"></li>
+                    </ul>
+                    <p class="text-lighten">Do you have other questions? Don't worry, there aren't any dumb questions. Just fill out the form below and we'll get back to you as soon as possible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section bg-gray">
+        <div class="accordion" id="accordionExample">
+            <button style="border-radius: 50%;" id="myBtn" title="Reports"><a style="color:white" href="/AdminPortal/Reports"><i class="bi bi-chat-square-dots-fill">@ViewBag.ReportAmount</i></a></button>
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button style="text-decoration:none;font-size:29px" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Library Management
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="card-columns">
+                            <div class="card">
+                                <img class="card-img-top" src="https://i.pinimg.com/originals/cc/8c/a1/cc8ca1eb67567d171405d85ec5915160.png" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">ADD NEW LIBRARY CARD</h5>
+                                    <p class="card-text">Create New Library Cards For Newly Addmitted College Students.</p>
+                                    <button style="" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#AddBookModal">Small button</button>
+                                </div>
+                            </div>
+                            <div class="card p-3">
+                                <blockquote class="blockquote mb-0 card-body">
+                                    <h5 class="card-title text-center">LibraryCard Management</h5>
+                                    <p class="text-right">1. View Library Cards <span style="margin-left:20px"></span></br> <a style="" href="/AdminPortal/LibraryCardsList" class="btn btn-primary btn-sm">Click Here</a> </p>
+                                    @*<footer class="blockquote-footer">
+                                            <small class="text-muted">
+                                                Someone famous in <cite title="Source Title">Source Title</cite>
+                                            </small>
+                                        </footer>*@
+                                </blockquote>
+                            </div>
+                            <div class="card">
+                                <img class="card-img-top" src="https://i.pinimg.com/originals/cc/8c/a1/cc8ca1eb67567d171405d85ec5915160.png" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Take Book</h5>
+                                    <p class="card-text">If Student Taek Book from Library Then Click Here.</p>
+                                    <a style="" href="/Library/TakeBook" class="btn btn-primary btn-sm" @*data-toggle="modal" data-target="#TakeBookModal"*@>Take Book</a>
+                                </div>
+                            </div>
+                            <div class="card bg-primary text-white text-center p-3">
+                                <blockquote class="blockquote mb-0">
+                                    <p>WelCome To Library Management System.Choose What Action you Want To Perform.</p>
+                                    <footer class="blockquote-footer">
+                                        <small>
+                                            This Page Id Created By <cite title="Source Title">Source NEw Title</cite>
+                                        </small>
+                                    </footer>
+                                </blockquote>
+                            </div>
+                            @*<div class="card text-center">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Deposit Book</h5>
+                                        <p class="card-text">This card has a regular title and short paragraphy of text below it.</p>
+                                        <button class="btn btn-primary" type="submit">Button</button>
+                                    </div>
+                                </div>*@
+                            @* <div class="card">
+                                    <img class="card-img" src=".../100px260/" alt="Card image">
+                                </div>*@
+                            <div class="card p-3">
+                                <blockquote class="blockquote mb-0">
+                                    <h5 class="card-title text-center">Books Management</h5>
+                                    <p>1. Find Books Which Are Not  Returned <span style="margin-left:20px"></span> <button style="" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#FindNotReturnedBooksModal">Find Not ReturnedBooks</button> </p>
+                                    <p>2. Add New Book <span style="margin-left:20px"></span> <br /> <button style="" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg">Add Book</button> </p>
+                                    <p>3. List All Books Available in Library <span style="margin-left:20px"></span> <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#AllLibararyBooksModal">All Books</button> </p>
+                                    <p>4. View All Requested Books <span style="margin-left:20px"></span> <br /> <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#FindRequestedBooksModal">View Books</button> </p>
+                                    @*<footer class="blockquote-footer">
+                                            <small class="text-muted">
+                                                Someone famous in <cite title="Source Title">Source seconde Title</cite>
+                                            </small>
+                                        </footer>*@
+
+                                </blockquote>
+                                <hr />
+                            </div>
+                            <div class="card">
+                                <img class="card-img-top" src="https://i.pinimg.com/originals/cc/8c/a1/cc8ca1eb67567d171405d85ec5915160.png" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">DEPOSIT BOOK</h5>
+                                    <p class="card-text">This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.</p>
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#DepositBookModal">Small button</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                        <button style="text-decoration:none;font-size:29px" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Addmissions Management
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="card-deck">
+                            <div class="card">
+                                <img class="card-img-top" src=".../100px200/" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">New Addmission</h5>
+                                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                    <hr />
+                                    <a href="/Addmission/NewAddmission" class="btn btn-primary btn-sm" target="_blank" @*data-toggle="modal" data-target="#AppointTeacherForCourseModal"*@>Click Here</a>
+                                    @*<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#AddMissionModal">Submit</button>*@
+                                </div>
+                            </div>
+                            <div class="card">
+                                <img class="card-img-top" src=".../100px200/" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Fresher Students Lists</h5>
+                                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                                    @*<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#FresherStudentsListModal">View Students</button>*@
+                                    <a href="/Addmission/FresherStudents" class="btn btn-primary btn-sm" target="_blank">View List</a>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <img class="card-img-top" src=".../100px200/" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Edit Student</h5>
+                                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                                    <a href="/AdminPortal/EditStudent" target="_blank" class="btn btn-primary btn-sm">Click Here</a>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <img class="card-img-top" src=".../100px200/" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Passed Out Students</h5>
+                                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#PassedOutStudentsModal">View Students</button>
+                                </div>
+                            </div>
+                            @* <div class="card">
+                                    <img class="card-img-top" src=".../100px200/" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Pending Add</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button style="text-decoration:none;font-size:29px" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Fess Management
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="card-deck">
+                            <div class="card">
+                                <img class="card-img-top" src=".../100px200/" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Deposit Fess</h5>
+                                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                    <hr />
+                                    <a href="/Fess/FindStudent" target="_blank" class="btn btn-primary btn-sm">Click here</a>
+                                    @*<button type="submit" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#FessDepositModal">Fess Desposit</button>*@
+                                </div>
+                            </div>
+                            <div class="card">
+                                <img class="card-img-top" src=".../100px200/" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Deposit Fine</h5>
+                                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                                    <hr />
+                                    @*<button type="submit" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#StudentFessDetailsModal">Fess Details</button>*@
+                                    <a href="/Fess/SearchStudent" target="_blank" class="btn btn-primary btn-sm">Click here</a>
+                                </div>
+                            </div>
+                            @*<div class="card">
+                                <img class="card-img-top" src=".../100px200/" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Calculate Student Fine</h5>
+                                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                                    <hr />
+                                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                                </div>
+                            </div>*@
+                            @*<div class="card">
+                                    <img class="card-img-top" src=".../100px200/" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Pending Add</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingFour">
+                    <h2 class="mb-0">
+                        <button style="text-decoration:none;font-size:29px" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Event Management
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-6 mb-5">
+                                <div class="card rounded-0 hover-shadow">
+                                    <div class="card-body">
+                                        <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Icons8_flat_add_image.svg/512px-Icons8_flat_add_image.svg.png" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Upload Event Images</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#EventsModalMain">Click Here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6 mb-5">
+                                <div class="card rounded-0 hover-shadow">
+                                    <div class="card-body">
+                                        <img class="card-img-top" src="https://www.pngkit.com/png/detail/429-4292941_create-icon-event-management-icon.png" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                Create New Event
+                                            </h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#CreateEventModalMain">Click Here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6 mb-5">
+                                <div class="card rounded-0 hover-shadow">
+                                    <div class="card-body">
+                                        <!-- location -->
+                                        <p><i class="ti-location-pin text-primary mr-2"></i>ScheduleName EventScheduleName</p>
+                                        <p><i class="ti-location-pin text-primary mr-2"></i>Location  EventName</p>
+                                        <p><i class="ti-location-pin text-primary mr-2"></i>StartingTime  StartingTime</p>
+                                        <p><i class="ti-location-pin text-primary mr-2"></i>EndingTime EndingTime</p>
+                                        <a href="event-single.html">
+                                            <h4 class="card-title ">gfs</h4>
+                                        </a>
+                                    </div>
+                                    <a href="/Event/EventDetails?EviDEventGuid&SchiDScheduleGuid" class="btn btn-primary btn-sm">View Event</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingFive">
+                    <h2 class="mb-0">
+                        <button style="text-decoration:none;font-size:29px" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            Course Management
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-6 mb-5">
+                                <div class="card rounded-0 hover-shadow">
+                                    <div class="card-body">
+                                        <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Icons8_flat_add_image.svg/512px-Icons8_flat_add_image.svg.png" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Add New Course</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            <a href="/AdminPortal/AddCourse" class="btn btn-primary" target="_blank" @*data-toggle="modal" data-target="#CourseAddModal"*@>Click Here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6 mb-5">
+                                <div class="card rounded-0 hover-shadow">
+                                    <div class="card-body">
+                                        <img class="card-img-top" src="https://www.pngkit.com/png/detail/429-4292941_create-icon-event-management-icon.png" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                Update Course Details
+                                            </h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#CourseUpdateModal">Click Here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6 mb-5">
+                                <div class="card rounded-0 hover-shadow">
+                                    <div class="card-body">
+                                        <img class="card-img-top" src="" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Delete Course</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#CourseAddModal">Click Here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6 mb-5">
+                                <div class="card rounded-0 hover-shadow">
+                                    <div class="card-body">
+                                        <img class="card-img-top" src="" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Deleted Courses List</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#DeletedCourseAddModal">Click Here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingSix">
+                    <h2 class="mb-0">
+                        <button style="text-decoration:none;font-size:29px" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            Notice Management
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-6 mb-5">
+                                <div class="card rounded-0 hover-shadow">
+                                    <div class="card-body">
+                                        <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Icons8_flat_add_image.svg/512px-Icons8_flat_add_image.svg.png" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Create New Notice</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#AddNEWNOTICEMODAL" >Click Here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6 mb-5">
+                                <div class="card rounded-0 hover-shadow">
+                                    <div class="card-body">
+                                        <img class="card-img-top" src="https://www.pngkit.com/png/detail/429-4292941_create-icon-event-management-icon.png" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                Edit Notices
+                                            </h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            <a href="/AdminPortal/ModifyNotices" class="btn btn-primary btn-sm" target="_blank">Click Here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingSeven">
+                    <h2 class="mb-0">
+                        <button style="text-decoration:none;font-size:29px" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                            Teacher Management
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseSeven" class="collapse" aria-labelledby="collapseSeven" data-parent="#accordionExample">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-6 mb-5">
+                                <div class="card rounded-0 hover-shadow">
+                                    <div class="card-body">
+                                        <img class="card-img-top" src="https://png.pngtree.com/png-clipart/20190629/original/pngtree-vector-add-user-icon-png-image_4101885.jpg" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title" style="font-family: 'Ubuntu', sans-serif;">Add New Teacher</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#TeacherAddModal">Click Here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6 mb-5">
+                                <div class="card rounded-0 hover-shadow">
+                                    <div class="card-body">
+                                        <img class="card-img-top" src="https://img.pngio.com/workshop-icon-png-computer-icons-clipart-download-640-640-workshop-png-900_640.png" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title" style="font-family: 'Ubuntu', sans-serif;">
+                                                Appoint New Teacher For Course
+                                            </h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            <a href="/AdminPortal/TeacherAppointment" class="btn btn-primary btn-sm" target="_blank" @*data-toggle="modal" data-target="#AppointTeacherForCourseModal"*@>Click Here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6 mb-5">
+                                <div class="card rounded-0 hover-shadow">
+                                    <div class="card-body">
+                                        <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/VisualEditor_-_Icon_-_Remove.svg/1200px-VisualEditor_-_Icon_-_Remove.svg.png" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title" style="font-family: 'Ubuntu', sans-serif;">
+                                                Remove Teacher From Course
+                                            </h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#UpdateCourseTeacerViewModal">Click Here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6 mb-5">
+                                <div class="card rounded-0 hover-shadow">
+                                    <div class="card-body">
+                                        <img class="card-img-top" src="https://img.pngio.com/workshop-icon-png-computer-icons-clipart-download-640-640-workshop-png-900_640.png" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title" style="font-family: 'Ubuntu', sans-serif;">
+                                                Delete Teacher
+                                            </h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            <a href="/AdminPortal/ResignTeacherList" class="btn btn-primary btn-sm" target="_blank" @*data-toggle="modal" data-target="#DeleteTeacerViewModal"*@>Click Here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6 mb-5">
+                                <div class="card rounded-0 hover-shadow">
+                                    <div class="card-body">
+                                        <img class="card-img-top" src="https://img.pngio.com/workshop-icon-png-computer-icons-clipart-download-640-640-workshop-png-900_640.png" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title" style="font-family: 'Ubuntu', sans-serif;">
+                                                Update Teacher Data
+                                            </h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#UpdateTeacherList">Click Here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Modals Parts-->
+    <div class="modal fade" id="AddBookModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content rounded-0 border-0 p-4">
+                <div class="modal-header border-0">
+                    <h3>Register</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/Library/NewLibraryCard" method="post">
+                        <div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <input style="height:37px" type="text" name="StudentRegId" class="form-control" placeholder="StudentRegistrationId">
+                                </div>
+                                <div class="col">
+                                    @Html.Action("StreamList", "Addmission")
+                                </div>
+                            </div>
+                            <br />
+                            <button formtarget="_blank" type="submit" class="btn btn-primary btn-sm">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="DepositBookModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content rounded-0 border-0 p-4">
+                <div class="modal-header border-0">
+                    <h3>Register</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/Library/BookDeposit" method="post">
+                        <div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <input name="LibraryCardSerialNumber" style="height:37px" type="text" class="form-control" placeholder="LibraryCard SerialNumber">
+                                </div>
+                                <div class="col">
+                                    <input name="BookSerialNumber" style="height:37px" type="text" class="form-control" placeholder="BookSerial Numeber">
+                                </div>
+                            </div>
+                            <br />
+                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="FresherStudentModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="position: absolute;
+                    left: 50%;
+                    font-size: 30px;
+                    /* font-family: 'themify'; */
+                    top: 1%;
+                    transform: translate(-50%, 1%);
+                    font-family: 'Jura', sans-serif;
+                     ">
+                        Fresher Students List
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4" id="result">
+                    <div class="form-group pull-right">
+                        <input type="text" class="search form-control" placeholder="What you looking for?">
+                    </div>
+                    <span class="counter pull-right"></span>
+                    <table class="table table-hover table-bordered results">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th class="col-md-5 col-xs-5">Name / Surname</th>
+                                <th class="col-md-4 col-xs-4">Job</th>
+                                <th class="col-md-3 col-xs-3">City</th>
+                            </tr>
+                            <tr class="warning no-result">
+                                <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Vatanay Özbeyli</td>
+                                <td>UI & UX</td>
+                                <td>Istanbul</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<div class="modal fade" id="TakeBookModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content rounded-0 border-0 p-4">
+                <div class="modal-header border-0">
+                    <h3>Register</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/Library/TakeBook" method="post">
+                        <div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <input style="height:37px" type="text" name="LibraryCardSerialNumber" class="form-control" placeholder="LibraryCard SerialNumber">
+                                </div>
+                                <div class="col">
+                                    <input style="height:37px" type="text" name="BookSerialNumber" class="form-control" placeholder="BookSerial Numeber">
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-row">
+                                <div class="col">
+                                    @Html.Action("StreamAndSemesterDropDown", "AdminPortal")
+                                </div>
+                            </div>
+                            <br />
+                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+    <div class="modal fade" id="AddMissionModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="position: absolute;
+                        left: 50%;
+                        font-size: 30px;
+                        /* font-family: 'themify'; */
+                        top: 1%;
+                        transform: translate(-50%, 1%);
+                        font-family: 'Jura', sans-serif;
+                    ">
+                        AddmissionForm
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4" id="result">
+                    <div>
+                        <form action="/Addmission/NewAddmission" method="post">
+                            <div>
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="validationCustom01">First name</label>
+                                        <input type="text" class="form-control" id="validationCustom01" placeholder="First name" required>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="validationCustom02">Middle name</label>
+                                        <input type="text" class="form-control" id="validationCustom02" placeholder="Middle name" required>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="validationCustomUsername">Last name</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="validationCustomUsername" placeholder="Last name" aria-describedby="inputGroupPrepend" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="validationCustom01">Parent name</label>
+                                        <input type="text" class="form-control" id="validationCustom01" placeholder="Parent name" required>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="validationCustom02">Addmission Year</label>
+                                        <input type="text" class="form-control" id="validationCustom02" placeholder="Addmission Year" required>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="validationCustom02">Blood Group</label>
+                                        <input type="text" class="form-control" id="validationCustom02" placeholder="Blood Group" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-3">
+                                        <label for="validationCustom01">Email</label>
+                                        <input type="text" class="form-control" id="validationCustom01" placeholder="Email" required>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="validationCustom02">Contact Number</label>
+                                        <input type="text" class="form-control" id="validationCustom02" placeholder="Contact Number" required>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="validationCustom02">Contact Number</label>
+                                        <input type="text" class="form-control" id="validationCustom02" placeholder="Contact Number Optional" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAddress">Address</label>
+                                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputAddress2">Address 2</label>
+                                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputCity">City</label>
+                                        <input type="text" class="form-control" id="inputCity">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputState">State</label>
+                                        @Html.Action("StateList", "Addmission")
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputZip">Zip</label>
+                                        <input type="text" class="form-control" id="inputZip">
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-4 mb-3">
+                                            <label for="inputAddress">Upload StudentImage</label>
+                                            <input type="file" class="form-control" id="inputAddress" placeholder="Upload Student Image">
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="inputAddress">Upload Signature Image</label>
+                                            <input type="file" class="form-control" id="inputAddress" placeholder="Upload Signature Image">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputAddress2">Date Of Birth</label>
+                                        <input type="date" class="form-control" id="inputAddress2" placeholder="Date Of Birth">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputCity">City</label>
+                                        @Html.Action("StreamList", "Addmission")
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputCity">City</label>
+                                        @Html.Action("SemesterList", "Addmission")
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputCity">City</label>
+                                        @Html.Action("GenderList", "Addmission")
+                                    </div>
+                                </div>
+                                <hr />
+                                <h5 style="
+                                    font-size: 30px;
+                                    font-family: 'Jura', sans-serif;">
+                                    Documents
+                                </h5>
+                                <hr />
+                                <div class="form-row">
+                                    <div class="col-md-3 mb-3">
+                                        <label for="validationTooltip05">Qualification</label>
+                                        <input type="text" class="form-control" id="validationTooltip05" placeholder="Qualification" required>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="validationTooltip05">Higher Secondery Board</label>
+                                        <input type="text" class="form-control" id="validationTooltip05" placeholder="Higher Secondery Board" required>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="validationTooltip05">Total Number</label>
+                                        <input type="text" class="form-control" id="validationTooltip05" placeholder="Total Number" required>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="validationTooltip05">Percentage In HS</label>
+                                        <input type="text" class="form-control" id="validationTooltip05" placeholder="Percentage In HS" required>
+                                    </div>
+                                </div>
+                                @*<div class="form-group row">
+                                        <label for="inputAddress2">Document Path 1</label>
+                                        <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                                        <label class="custom-file-label" for="validatedCustomFile">Madhyamik Marksheet</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlFile1">Example file input</label>
+                                        <input type="file" class="form-control" id="inputAddress" placeholder="Upload Student Image">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputAddress2">Document Path 1</label>
+                                        <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                                        <label class="custom-file-label">Choose file...</label>
+                                    </div>
+                                    <div class="custom-file">
+                                        <label for="inputAddress2">Document Path 1</label>
+                                        <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                                        <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                                    </div>*@
+                                <div class="form-row">
+                                    <div class="col-md-3 mb-3">
+                                        <label for="validationTooltip05">Zip</label>
+                                        <input type="text" class="form-control" id="validationTooltip05" placeholder="Zip" required>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="validationTooltip05">Zip</label>
+                                        <input type="text" class="form-control" id="validationTooltip05" placeholder="Zip" required>
+                                    </div>
+                                </div>
+
+                                <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block">
+                                <input type="reset" value="Reset" class="btn btn-primary btn-lg btn-block">
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="FessDepositModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content rounded-0 border-0 p-4">
+                <div class="modal-header border-0">
+                    <h3>Register</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/Fess/FindStudent" method="post">
+                        <div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <input style="height:37px" type="text" name="StudentName" class="form-control" placeholder="Student Name">
+                                </div>
+                                <div class="col">
+                                    <input style="height:37px" type="text" name="AddmissionYear" class="form-control" placeholder="Addmission Year">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    @Html.Action("StreamAndSemesterDropDown", "AdminPortal")
+                                </div>
+                            </div>
+                            <br />
+                            <button type="submit" class="btn btn-primary btn-sm" formtarget="_blank">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="StudentFessDetailsModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content rounded-0 border-0 p-4">
+                <div class="modal-header border-0">
+                    <h3>Register</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/Fess/FessDeails" method="post">
+                        <div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <input style="height:37px" type="text" class="form-control" placeholder="StudentName">
+                                </div>
+                                <div class="col">
+                                    @Html.Action("StreamList", "Addmission")
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col">
+                                    @Html.Action("SemesterList", "Addmission")
+                                </div>
+                            </div>
+                            <br />
+                            <button type="submit" class="btn btn-primary btn-sm" formtarget="_blank">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="FindNotReturnedBooksModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="position: absolute;
+                    left: 50%;
+                    font-size: 30px;
+                    /* font-family: 'themify'; */
+                    top: 1%;
+                    transform: translate(-50%, 1%);
+                    font-family: 'Jura', sans-serif;
+                     ">
+                        Not-Returned Books List
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4" id="resultnc">
+                    <div class="form-group pull-right">
+                        <input type="text" class="searchnc form-control" placeholder="What you looking for?">
+                    </div>
+                    <span class="counternc pull-right"></span>
+                    <table class="table table-hover table-bordered resultsnc">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th class="col-md-5 col-xs-5">Student Name</th>
+                                <th class="col-md-4 col-xs-4">BookName</th>
+                                <th class="col-md-3 col-xs-3">AuthorName</th>
+                                <th class="col-md-3 col-xs-3">BookSerialNumber</th>
+                                <th class="col-md-3 col-xs-3">BookDepositDate</th>
+                            </tr>
+                            <tr class="warning no-resultnc">
+                                <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Item1)
+                            {
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>@item.StudentName</td>
+                                    <td>@item.BookName</td>
+                                    <td>@item.AuthorName</td>
+                                    <td>@item.BookSerialNumber</td>
+                                    <td>@item.DepositOn</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="AllLibararyBooksModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="position: absolute;
+                    left: 50%;
+                    font-size: 30px;
+                    /* font-family: 'themify'; */
+                    top: 1%;
+                    transform: translate(-50%, 1%);
+                    font-family: 'Jura', sans-serif;
+                     ">
+                        Books Lists
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4" id="resultnc">
+                    <div class="container">
+                        <p>Search Anything in the input field to search the table:</p>
+                        <input class="form-control" id="myInput" type="text" placeholder="Search Books...">
+                        <br>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>BookName</th>
+                                    <th>BookAuthorName</th>
+                                    <th>TotalBooksQuantity</th>
+                                    <th>CurrentQuantity</th>
+                                    <th>CourseName</th>
+                                    <th>Links</th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTable">
+                                @foreach (var item5 in Model.Item4)
+                                {
+                                    <tr>
+                                        <td>@item5.BookName</td>
+                                        <td>@item5.BookAuthorName</td>
+                                        <td>@item5.TotalBooksQuantity</td>
+                                        <td>@item5.CurrentQuantity</td>
+                                        <td>@item5.Course</td>
+                                        <td><a href="/Library/ListFilterBooks?cVal=@item5.BookGuid" target="_blank" class="class=" btn btn-primary btn-sm"">View Books    </a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="EventsModalMain" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full" role="document">
+            <div class="modal-content" style="transform: translate(8px, -10px);">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="position: absolute;
+                    left: 50%;
+                    font-size: 30px;
+                    /* font-family: 'themify'; */
+                    top: 1%;
+                    transform: translate(-50%, 1%);
+                    font-family: 'Jura', sans-serif;
+                     ">
+                        Events
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4" id="resultnc">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                                <input type="text" id="myFilter" class="form-control" onkeyup="myFunction()" placeholder="Search for Event names..">
+                            </div>
+                        </div>
+                        <div class="row" id="myItems">
+                            @foreach (var nItem in Model.Item3)
+                            {
+                                <div class="col-sm-4">
+                                    <div class="card">
+                                        <img src="@nItem.ImagePath" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">@nItem.EventName</h5>
+                                            <input value="@nItem.EventGuid" id="EventValue" style="display:none" />
+                                            <p class="card-text">@nItem.EventShortDetails</p>
+                                            <a class="btn btn-primary" id="myAnchor" href="/AdminPortal/UploadEventImages?EvID=@nItem.EventGuid">Click Here</a>
+                                        </div>
+                                    </div>
+                                    <br /><br />
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="CreateEventModalMain" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full" role="document">
+            <div class="modal-content" style="transform: translate(8px, -10px);">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="position: absolute;
+                    left: 50%;
+                    font-size: 30px;
+                    /* font-family: 'themify'; */
+                    top: 1%;
+                    transform: translate(-50%, 1%);
+                    font-family: 'Jura', sans-serif;
+                     ">
+                        Create New Event
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4">
+                    <div>
+                        <form method="post" action="/Event/AddEvent" enctype="multipart/form-data">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Event Name <span style="color:red">*</span> </label>
+                                    <input type="text" name="EventName" class="form-control" id="inputEmail4" placeholder="Event Name" required>
+                                    <small id="emailHelp" class="form-text text-muted">***Input Event Name With Year***</small>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword4">Event Place Address <span style="color:red">*</span> </label>
+                                    <input type="text" name="EventPlace" class="form-control" id="inputPassword4" placeholder="Event Place Address" required>
+                                    <small id="emailHelp" class="form-text text-muted">***Place Name Where Event Will be hosted***</small>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">GoogleMap Location <span style="color:red">*</span> </label>
+                                    <input type="text" name="Location" class="form-control" id="inputEmail4" placeholder="Enter Location" required>
+                                    <small id="emailHelp" class="form-text text-muted">***Open Google Map Search the destination Place.Choose Correct Place then just Copy The URL and just Paste Here.***</small>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Event Entry Fee</label>
+                                    <input type="number" name="EntryFee" class="form-control" id="inputEmail4" placeholder="Enter Amount" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Event Starting Date</label>
+                                    <input type="date" name="EventDate" class="form-control" id="inputEmail4" placeholder="Starting Date" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Event Ending Date</label>
+                                    <input type="date" name="EventExpirationDate" class="form-control" id="inputEmail4" placeholder="Ending Date" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Event Description</label>
+                                <textarea class="form-control" name="EventDescription" id="exampleFormControlTextarea1" rows="3" placeholder="Write Something..."></textarea>
+                            </div>
+                            <div class="form-check form-check-inline" style="margin-bottom:3px">
+                                <input class="form-check-input" name="PreRegistration" type="checkbox" id="inlineCheckbox1" value="option1">
+                                <label class="form-check-label" for="inlineCheckbox1"><strong>Is Pre-Registration Available</strong></label>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleInputPassword1">Upload Template Image</label>
+                                        <input style="padding: 3px" type="file" class="form-control" name="ImageFile" id="exampleInputPassword1" placeholder="Upload Image" multiple>
+                                        <small id="emailHelp" class="form-text text-muted">***This Image Will Show in Every Where.***</small>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleInputPassword1">Upload Template Text</label>
+                                        <input style="padding: 3px" type="text" class="form-control" name="EventHeader" id="exampleInputPassword1" placeholder="Upload Image">
+                                        <small id="emailHelp" class="form-text text-muted">***This Header Text Will Show in Every Where.***</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <hr />
+                            <div class="modal-header">
+                                <h5 class="modal-title" style="position: relative;
+    left: 50%;
+    font-size: 30px;
+    /* font-family: 'themify'; */
+    top: 68%;
+    transform: translate(-50%, -50%);
+    font-family: 'Jura', sans-serif;">
+                                    Schedule Section
+                                </h5>
+                            </div>
+                            <div class="form-row" style="padding-bottom: 20px;">
+                                <div class="col-md-12">
+                                    <div class="input_fields_wrap">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">ScheduleName</label>
+                                                    <input name="ScheduleName" type="text" value="" class="form-control" required="">
+                                                    <small id="emailHelp" class="form-text text-muted">***If Yje Event Is Durga Puja The Schedule Name will be Sasti,saptami and so on.***</small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Date</label>
+                                                    <input name="ScheduleEventDate" type="date" value="" class="form-control" required="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Starting Time</label>
+                                                    <input name="ScheduleStartingTime" type="time" value="" class="form-control" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Ending Time</label>
+                                                    <input name="ScheduleEndingTime" type="time" value="" class="form-control">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="inputPassword4">Event BookkingSeats Amount<span style="color:red">*</span> </label>
+                                                    <input type="number" name="TotalInvitations" class="form-control" id="inputPassword4" placeholder="Enter Value" required>
+                                                </div>
+                                            </div>
+                                            <div style="left: 16px;position: relative;">
+                                                <button class="add_field_button btn btn-primary btn-sm">
+                                                    Add More Schedule
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br /><br />
+                            </div>
+                            <div class="form-group">
+                                <button style="background-color:lawngreen" type="submit" class="btn btn-primary btn-sm">Submit</button>
+                                <button style="background-color:red" type="reset" class="btn btn-primary btn-sm">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>*@
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>*@
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/AdminPortal/UploadEventImages" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Give a Name</label>
+                            <input type="text" class="form-control" name="Value" id="exampleInputEmail1" placeholder="Give a Name" required>
+                            <small id="emailHelp" class="form-text text-muted">***You Can Use this Event Name Otherwise Customize Your Own***</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Upload Files</label>
+                            <input style="padding: 3px" type="file" class="form-control" name="UploadFiles" id="exampleInputPassword1" placeholder="Upload Image" multiple>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal top fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+        <div class="modal-dialog modal-lg ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Book</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row justify-content-center">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="https://i.pinimg.com/originals/cc/8c/a1/cc8ca1eb67567d171405d85ec5915160.png" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Add Book Templates</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#AddParentBookModal">Add Parent Book</button>
+                            </div>
+                        </div>
+                        <span style="padding-right:20px"></span>
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="https://i.pinimg.com/originals/cc/8c/a1/cc8ca1eb67567d171405d85ec5915160.png" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#AddChildBookModal">Add Child Book</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="AddParentBookModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content rounded-0 border-0 p-4" style="background-color: antiquewhite;">
+                <div class="modal-header border-0">
+                    <h3>Add New Book</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/BooksControl/AddNewBooks" method="post" enctype="multipart/form-data">
+                        <div>
+                            <div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="ParentBookname">Book Name</label>
+                                        <input style="height:37px" type="text" name="BookName" class="form-control" placeholder="Enter Name" id="ParentBookname">
+                                    </div>
+                                    <div class="col">
+                                        <label for="ParentBookAuthorname">BookAuthor Name</label>
+                                        <input style="height:37px" name="BookAuthorName" type="text" class="form-control" placeholder="Enter Name" id="ParentBookAuthorname">
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="ParentBookCoverImage">Upload Book CoverImage</label>
+                                        <input style="height:37px" type="file" name="FileUplaod" class="form-control" placeholder="Book Name" id="ParentBookCoverImage">
+                                    </div>
+                                    <div class="col">
+                                        <label for="ParentBookCoverImage">Select Course</label>
+                                        @Html.Action("StreamList", "Addmission")
+                                    </div>
+                                    <div class="col">
+                                        <label for="ParentBookQuantity">Total BookQuantity</label>
+                                        <input style="height:37px" type="number" name="TotalBooksQuantity" class="form-control BooksQuantity" placeholder="Total Book Quantity" id="ParentBookQuantity">
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                            <br />
+                            <div class="modal-header">
+                                <h5 class="modal-title" style="position: relative;
+                                 left: 50%;
+                                 font-size: 30px;
+                                 /* font-family: 'themify'; */
+                                 top: 68%;
+                                 transform: translate(-50%, -50%);
+                                 font-family: 'Jura', sans-serif;">
+                                    Add Branch Books
+                                </h5>
+                            </div>
+                            <div class="form-row" style="padding-bottom: 20px;">
+                                <div class="col-md-12">
+                                    <div class="input_fields_wrap2">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Bookserialnumber</label>
+                                                    <input name="Bookserialnumber" type="number" placeholder="Enter Serial Number" value="" class="form-control" required>
+                                                    <small id="emailHelp" class="form-text text-muted">***Bookserialnumber must be unique. Don't repeat Number.***</small>
+                                                </div>
+                                                <div style="left: 16px;position: relative;" class="form-group">
+                                                    <button class="add_field_button2 btn btn-primary btn-sm">
+                                                        Add Child Books
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br /><br />
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                            <button type="reset" class="btn btn-primary btn-sm">Reset</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="AddChildBookModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content rounded-0 border-0 p-4" style="background-color: antiquewhite;">
+                <div class="modal-header border-0">
+                    <h3>Add Child Book</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/Library/BookDeposit" method="post">
+                        <div>
+                            <div class="form-row">
+                                <div class="col">
+                                    @Html.Action("Dropdowns", "AdminPortal")
+                                </div>
+                                <div class="col">
+                                    <input style="height:37px" type="text" class="form-control" placeholder="BookSerial Numeber">
+                                </div>
+                            </div>
+                            <br />
+                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="FindRequestedBooksModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="position: absolute;
+                    left: 50%;
+                    font-size: 30px;
+                    /* font-family: 'themify'; */
+                    top: 1%;
+                    transform: translate(-50%, 1%);
+                    font-family: 'Jura', sans-serif;
+                     ">
+                        Not-Returned Books List
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4" id="resultnc">
+                    <div class="form-group pull-right">
+                        <input type="text" class="searchnc form-control" placeholder="What you looking for?">
+                    </div>
+                    <span class="counternc pull-right"></span>
+                    <table class="table table-hover table-bordered resultsnc">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th class="col-md-4 col-xs-4">BookName</th>
+                                <th class="col-md-4 col-xs-4">StudentName</th>
+                                <th class="col-md-4 col-xs-4">LibraryCardSerialNumber</th>
+                                <th class="col-md-3 col-xs-3">BookSerialNumber</th>
+                                <th class="col-md-3 col-xs-3">BookRequestDate</th>
+                                <th class="col-md-3 col-xs-3">BookTakenDate</th>
+                            </tr>
+                            <tr class="warning no-resultnc">
+                                <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item2 in Model.Item2)
+                            {
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>@item2.BookName</td>
+                                    <td>@item2.StudentName</td>
+                                    <td>@item2.LibraryCardSerialNumber</td>
+                                    <td>@item2.BookSerialNumber</td>
+                                    <td>@item2.BookRequestDate</td>
+                                    <td>@item2.BookTakenDate</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="CourseAddModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full" role="document">
+            <div class="modal-content" style="transform: translate(8px, -10px);">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="position: absolute;
+                    left: 50%;
+                    font-size: 30px;
+                    /* font-family: 'themify'; */
+                    top: 1%;
+                    transform: translate(-50%, 1%);
+                    font-family: 'Jura', sans-serif;
+                     ">
+                        Add NewCourse Portal
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4">
+                    @Html.Action("DeleteCourse", "AdminPortal")
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="DeletedCourseAddModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full" role="document">
+            <div class="modal-content" style="transform: translate(8px, -10px);">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="position: absolute;
+                    left: 50%;
+                    font-size: 30px;
+                    /* font-family: 'themify'; */
+                    top: 1%;
+                    transform: translate(-50%, 1%);
+                    font-family: 'Jura', sans-serif;
+                     ">
+                        Add NewCourse Portal
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4">
+                    @Html.Action("DeletedCourseList", "AdminPortal")
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="CourseUpdateModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full" role="document">
+            <div class="modal-content" style="transform: translate(8px, -10px);">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="position: absolute;
+                    left: 50%;
+                    font-size: 30px;
+                    /* font-family: 'themify'; */
+                    top: 1%;
+                    transform: translate(-50%, 1%);
+                    font-family: 'Jura', sans-serif;
+                     ">
+                        Update Course Portal
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4">
+                    @Html.Action("CourseControl", "AdminPortal")
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="TeacherAddModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full" role="document">
+            <div class="modal-content" style="transform: translate(8px, -10px);">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="position: absolute;
+                    left: 50%;
+                    font-size: 30px;
+                    /* font-family: 'themify'; */
+                    top: 1%;
+                    transform: translate(-50%, 1%);
+                    font-family: 'Jura', sans-serif;
+                     ">
+                        Add New Teacher
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4">
+                    <form action="/AdminPortal/AddTeacher" method="post" enctype="multipart/form-data">
+                        <div>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" name="TeacherName" class="form-control" placeholder="First name" required>
+                                </div>
+                                <div class="col">
+                                    @Html.Action("RoleList", "AdminPortal")
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Teacher Biography</label>
+                                <textarea class="form-control" name="Biography" id="exampleFormControlTextarea1" rows="3" placeholder="Write Something..." required></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" name="EmailId" class="form-control" placeholder="Teacher Email" required>
+                                </div>
+                                <div class="col">
+                                    <input type="text" name="PhoneNumber" class="form-control" placeholder="Teacher PhoneNumber" required>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top:15px">
+                                <div class="col">
+                                    <input type="text" name="SocialLink1" class="form-control" placeholder="facebook Link" required>
+                                </div>
+                                <div class="col">
+                                    <input type="text" name="SocialLink2" class="form-control" placeholder="Instagram Link">
+                                </div>
+                                <div class="col">
+                                    <input type="text" name="SocialLink3" class="form-control" placeholder="Twitter Link">
+                                </div>
+                                <div class="col">
+                                    <input type="text" name="SocialLink4" class="form-control" placeholder="SocialLink4">
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top:15px;padding-bottom:15px">
+                                <div class="col">
+                                    <label for="exampleFormControlTextarea1">Uplaod Teacher Image</label>
+                                    <input type="file" name="UploadFile" class="form-control" required />
+                                </div>
+                                <div class="col">
+                                    <label for="exampleFormControlTextarea1">Teacher Joining Date</label>
+                                    <input type="date" name="JoiningDate" class="form-control" placeholder="Enter Date" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                            <button type="reset" class="btn btn-primary btn-sm">Reset</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="AddNEWNOTICEMODAL" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full" role="document">
+            <div class="modal-content" style="transform: translate(8px, -10px);">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="position: absolute;
+                    left: 50%;
+                    font-size: 30px;
+                    /* font-family: 'themify'; */
+                    top: 1%;
+                    transform: translate(-50%, 1%);
+                    font-family: 'Jura', sans-serif;
+                     ">
+                        Create New Notice
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row justify-content-center">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="https://i.pinimg.com/originals/cc/8c/a1/cc8ca1eb67567d171405d85ec5915160.png" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Create Text Notice</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="/Notice/CreateTextNotice" class="btn btn-primary btn-sm" target="_blank">Create Notice</a>
+                            </div>
+                        </div>
+                        <span style="padding-right:20px"></span>
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="https://i.pinimg.com/originals/cc/8c/a1/cc8ca1eb67567d171405d85ec5915160.png" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Create Visual Notice</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="/Notice/CreateVisualNotice" class="btn btn-primary btn-sm" target="_blank">Create Notice</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="UpdateCourseTeacerViewModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full" role="document">
+            <div class="modal-content" style="transform: translate(8px, -10px);">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="position: absolute;
+                    left: 50%;
+                    font-size: 30px;
+                    /* font-family: 'themify'; */
+                    top: 1%;
+                    transform: translate(-50%, 1%);
+                    font-family: 'Jura', sans-serif;
+                     ">
+                        List Teachers
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4">
+                    @Html.Action("CollegeEnrolledTeachers", "AdminPortal")
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*<div class="modal fade" id="DeleteTeacerViewModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full" role="document">
+            <div class="modal-content" style="transform: translate(8px, -10px);">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="position: absolute;
+                    left: 50%;
+                    font-size: 30px;
+                    /* font-family: 'themify'; */
+                    top: 1%;
+                    transform: translate(-50%, 1%);
+                    font-family: 'Jura', sans-serif;
+                     ">
+                        List Teachers
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4">
+                    @Html.Action("CollegeEnrolledTeachers", "AdminPortal")
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>*@
+    <div class="modal fade" id="PassedOutStudentsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/AdminPortal/PassedOutStudents">
+                        <div>
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">PassedOut year</label>
+                                <div class="col-sm-10">
+                                    <input type="number" name="Code" class="form-control" id="Code" value="email@example.com">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputPassword" class="col-sm-2 col-form-label">Stream</label>
+                                <div class="col-sm-10">
+                                    @Html.Action("StreamList", "Addmission")
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm" formtarget="_blank">Search Students</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="UpdateTeacherList" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-full" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="position: absolute;
+                    left: 50%;
+                    font-size: 30px;
+                    /* font-family: 'themify'; */
+                    top: 1%;
+                    transform: translate(-50%, 1%);
+                    font-family: 'Jura', sans-serif;
+                     ">
+                        Teachers List
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4" id="resultnc">
+                    <div class="container">
+                        @Html.Action("UpdateTeachersList", "AdminPortal")
+                    </div>
+                </div>>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        var mybutton = document.getElementById("myBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        $(document).ready(function () {
+            $(".search").keyup(function () {
+                var searchTerm = $(".search").val();
+                var listItem = $('.results tbody').children('tr');
+                var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
+
+                $.extend($.expr[':'], {
+                    'containsi': function (elem, i, match, array) {
+                        return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+                    }
+                });
+
+                $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function (e) {
+                    $(this).attr('visible', 'false');
+                });
+
+                $(".results tbody tr:containsi('" + searchSplit + "')").each(function (e) {
+                    $(this).attr('visible', 'true');
+                });
+
+                var jobCount = $('.results tbody tr[visible="true"]').length;
+                $('.counter').text(jobCount + ' item');
+
+                if (jobCount == '0') { $('.no-result').show(); }
+                else { $('.no-result').hide(); }
+            });
+        });
+        $(document).ready(function () {
+            $(".searchnc").keyup(function () {
+                var searchTermnc = $(".searchnc").val();
+                var listItemc = $('.resultsnc tbody').children('tr');
+                var searchSplitnc = searchTermnc.replace(/ /g, "'):containsi('")
+
+                $.extend($.expr[':'], {
+                    'containsi': function (elem, i, match, array) {
+                        return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+                    }
+                });
+
+                $(".resultsnc tbody tr").not(":containsi('" + searchSplitnc + "')").each(function (e) {
+                    $(this).attr('visible', 'false');
+                });
+
+                $(".resultsnc tbody tr:containsi('" + searchSplitnc + "')").each(function (e) {
+                    $(this).attr('visible', 'true');
+                });
+
+                var jobCountnc = $('.resultsnc tbody tr[visible="true"]').length;
+                $('.counternc').text(jobCountnc + ' item');
+
+                if (jobCountnc == '0') { $('.no-resultnc').show(); }
+                else { $('.no-resultnc').hide(); }
+            });
+        });
+        function myFunction() {
+            var input, filter, cards, cardContainer, h5, title, i;
+            input = document.getElementById("myFilter");
+            filter = input.value.toUpperCase();
+            cardContainer = document.getElementById("myItems");
+            cards = cardContainer.getElementsByClassName("card");
+            for (i = 0; i < cards.length; i++) {
+                title = cards[i].querySelector(".card-body h5.card-title");
+                if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+        function myFddddunction() {
+            var x = document.getElementById("myAnchor").href;
+            window.alert(x);
+        }
+
+        $(document).ready(function () {
+            var max_fields = 1500; //maximum input boxes allowed
+            var wrapper = $(".input_fields_wrap"); //Fields wrapper
+            var add_button = $(".add_field_button"); //Add button ID
+            var x = 1; //initlal text box count
+            $(add_button).click(function (e) { //on add input button click
+                e.preventDefault();
+                if (x < max_fields) { //max input box allowed
+                    x++; //text box increment
+                    $(wrapper).append('<div class="row" style="padding-top: 20px;"><div class="col-md-6"><div class="form-group"><label for="">ScheduleName</label><input name="ScheduleName" placeholder="Enter Name" type="text" value="" class="form-control" required></div><div class="form-group"><label for="">Date</label><input name="ScheduleEventDate" type="date" value="" class="form-control" required></div></div><div class="col-md-6"><div class="form-group"><label for="">Starting Time</label><input name="ScheduleStartingTime" type="time" value="" class="form-control" required></div><div class="form-group"><label for="">Ending Time</label><input name="ScheduleEndingTime" type="time" value="" class="form-control" required></div><div class="form-group"><label for="">Event BookkingSeats Amount</label><input name="TotalInvitations" placeholder="Enter Amount" type="number" value="" class="form-control" required></div></div><div style="cursor:pointer;background-color:red;left: 16px;position: relative;" class="remove_field btn btn-primary btn-sm">Remove</div></div>'); //add input box
+                }
+            });
+            $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
+                e.preventDefault(); $(this).parent('div').remove(); x--;
+            })
+        });
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+        $(document).ready(function () {
+            var value;
+            var max_fields = 1500; //maximum input boxes allowed
+            var wrapper = $(".input_fields_wrap2"); //Fields wrapper
+            var add_button = $(".add_field_button2"); //Add button ID
+            var x = 1; //initlal text box count
+            $(add_button).click(function (e) { //on add input button click
+                e.preventDefault();
+                if (x < value) { //max input box allowed
+                    x++; //text box increment
+                    $(wrapper).append('<div class="row" style="padding-top: 20px;"><div class="col-md-6"><div class="form-group"><label for="">BookSerialnumber</label><input name="Bookserialnumber" placeholder="Enter Number" type="number" class="form-control" required></div><div style="cursor:pointer;background-color:red;left: 16px;position: relative;height: 43px;" class="remove_field btn btn-primary btn-sm">Remove</div></div></div>'); //add input box
+                }
+            });
+            $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
+                e.preventDefault(); $(this).parent('div').remove(); x--;
+            })
+
+            $("#ParentBookQuantity").on("keyup", function () {
+                value = $(this).val().toLowerCase();
+            });
+        });
+        AOS.init();
+    </script>
+</body>
+</html>

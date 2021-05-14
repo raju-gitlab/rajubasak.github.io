@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "AddCourse";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="~/Styles/GlobalCssProperties/Styleseet2.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <ul class="list-inline custom-breadcrumb">
+                        <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="page-link">UpdateCourseData</a></li>
+                        <li class="list-inline-item text-white h3 font-secondary"></li>
+                    </ul>
+                    <p class="text-lighten">Do you have other questions? Don't worry, there aren't any dumb questions. Just fill out the form below and we'll get back to you as soon as possible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section bg-gray">
+
+        <div class="container">
+            <form method="post" action="/AdminPortal/AddCourse" enctype="multipart/form-data">
+                <div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-5 mb-5" style="text-align: center;">
+                            <div class="form-group">
+                                <div class="file-upload" style="height:100%">
+                                    <div class="image-upload-wrap">
+                                        <input class="file-upload-input" name="UploadImage" type='file' onchange="readURL(this);" accept="image/*" />
+                                        <div class="drag-text">
+                                            <h3 style="font-size:105px"><i class="bi bi-cloud-upload"></i></h3>
+                                        </div>
+                                    </div>
+                                    <div class="file-upload-content">
+                                        <img class="file-upload-image" src="#" alt="Course image" />
+                                    </div>
+
+                                    <button class="file-upload-btn" style="margin-top:10px;" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Course Name</label>
+                            <input type="text" name="CourseName" class="form-control" id="inputEmail4" placeholder="Enter Name" onchange="UserCheck()" required>
+                            <p id="Status"></p>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Course Type</label>
+                            <input type="text" name="CourseType" class="form-control" id="inputPassword4" placeholder="What Type Of Course" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">Course Details</label>
+                        <textarea class="form-control"name="CourseDetails" id="exampleFormControlTextarea1" rows="3" required placeholder="Write Something About Course."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress2">Course Requirements</label>
+                        <textarea class="form-control" name="CourseRequirements" id="exampleFormControlTextarea1" rows="1" aria-describedby="emailHelp" required placeholder="Write List Of Criteria For Take Addmission in this Course."></textarea>
+                        <small id="emailHelp" class="form-text text-muted">Use ","(comma) after each Criteria</small>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="inputCity">PerSemester Fess</label>
+                            <input type="number" name="PerSemesterFess" class="form-control" id="inputCity">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputState">FullCourse Fess</label>
+                            <input type="number" name="FullCourseFess" class="form-control" id="inputState">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="inputZip">Number Of Semester</label>
+                            <input type="number" name="TotalSemester" class="form-control" id="inputZip">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="inputTotalYear">Complete Time</label>
+                            <input type="text" name="CourseDuration" class="form-control" id="inputTotalYear" aria-describedby="YearHelp">
+                            <small id="YearHelp" class="form-text text-muted">Use ","(comma) after each Criteria</small>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                    <button type="reset" class="btn btn-primary btn-sm">Clear Form</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.image-upload-wrap').hide();
+
+                    $('.file-upload-image').attr('src', e.target.result);
+                    $('.file-upload-content').show();
+
+                    $('.image-title').html(input.files[0].name);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            } else {
+                removeUpload();
+            }
+        }
+
+        function removeUpload() {
+            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+            $('.file-upload-content').hide();
+            $('.image-upload-wrap').show();
+        }
+        $('.image-upload-wrap').bind('dragover', function () {
+            $('.image-upload-wrap').addClass('image-dropping');
+        });
+        $('.image-upload-wrap').bind('dragleave', function () {
+            $('.image-upload-wrap').removeClass('image-dropping');
+        });
+
+        function UserCheck() {
+            $.post("@Url.Action("CheckCourseName", "AdminPortal")", {
+                name: $("#inputEmail4").val()
+            },
+            function(data) {
+                if (data == 0) {
+                    $("#Status").html('<font color="Red">Same Name Of Course Is Already Available</font>')
+                }
+                else
+                {
+                    $("#Status").html('<font color="Green">You Can take this Name</font>')
+                }
+            })
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<CMS.MODEL.User.UserStudenEdittModel>
+@{
+    ViewBag.Title = "EditStudentsList";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <section class="page-title-section overlay" style="background-image: url('')">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <ul class="list-inline custom-breadcrumb" @*data-aos="fade-right" data-aos-delay="250"*@>
+                        <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="courses.html">Addmission</a></li>
+                        <li class="list-inline-item text-white h3 font-secondary nasted">FresherStudents List</li>
+                    </ul>
+                    <p class="text-lighten" @*data-aos="fade-right" data-aos-delay="350"*@>Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section" style="padding: 57px;">
+        <div class="container">
+            <p>Search Anything in the input field to search the table:</p>
+            <input class="form-control" id="myInput" type="text" placeholder="Search Students...">
+            <br>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>StudentName</th>
+                        <th>StreamName</th>
+                        <th>SemesterName</th>
+                        <th>Links</th>
+                    </tr>
+                </thead>
+                <tbody id="myTable">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.FirstName</td>
+                            <td>@item.Course</td>
+                            <td>@item.Semester</td>
+                            <td><a href="#" target="_blank" class="class=" btn btn-primary btn-sm""><i class="bi bi-person-x-fill" style="font-size:20px;padding-right:15px;"></i></a><span></span><a href="@item.StudentImagePath" id="ImagePath" class="class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalCenter"><i class="bi bi-eye" style="font-size:20px;" onclick="Myfunction()"></i></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>*@
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="#" id="myImg" alt="img" style="height:100%;width:100%"/>
+                </div>
+                @*<div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+            </div>
+        </div>
+    </div>
+    <script>
+        function Myfunction() {
+            var ImageUrl = document.getElementById('ImagePath').href;
+            var varsplit = ImageUrl.split('localhost:44377');
+            document.getElementById("myImg").src = varsplit[1];
+        }
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+</body>
+</html>

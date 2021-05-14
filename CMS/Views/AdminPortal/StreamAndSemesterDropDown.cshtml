@@ -1,0 +1,28 @@
+﻿@model CMS.MODEL.Master.DropDownListModel
+
+@{
+    ViewBag.Title = "StreamAndSemesterDropDown";
+    Layout = null;
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="">
+        <div class="">
+            <div class="">
+                @Html.DropDownListFor(model => model.Stream, new SelectList(ViewBag.StreamList, "StreamGuid", "Stream"), "Select Your Stream", new { @class = "form-control mb-3" })
+                @Html.ValidationMessageFor(model => model.StreamGuid, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="">
+        <div class="">
+            <div class="">
+                @Html.DropDownListFor(model => model.SemesterGuid, new SelectList(ViewBag.SemesterList, "SemesterGuid", "Semester"), "Select Your Stream", new { @class = "form-control mb-3" })
+                @Html.ValidationMessageFor(model => model.StreamGuid, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+}
+

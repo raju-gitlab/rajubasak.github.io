@@ -1,0 +1,55 @@
+﻿@model CMS.MODEL.Addmission.StudentFessEditModel
+
+@{
+    ViewBag.Title = "FindStudent";
+}
+
+<section class="page-title-section overlay" style="background-image: url('')">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <ul class="list-inline custom-breadcrumb" @*data-aos="fade-right" data-aos-delay="250"*@>
+                    <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="courses.html">AdminPortal</a></li>
+                    <li class="list-inline-item text-white h3 font-secondary nasted">Find Student</li>
+                </ul>
+                <p class="text-lighten" @*data-aos="fade-right" data-aos-delay="350"*@>Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <form method="post" action="/Fess/FindStudent" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="inputCity">Stream or Course</label>
+                @Html.DropDownListFor(model => model.StreamGuid, new SelectList(ViewBag.StreamList, "StreamGuid", "Stream"), "Select stream...", new { @class = "form-control mb-3" })
+                @Html.ValidationMessageFor(model => model.StreamGuid, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputCity">Semester</label>
+                @Html.DropDownListFor(model => model.SemesterGuid, new SelectList(" "), "Select semester...", new { @class = "form-control mb-3" })
+                @Html.ValidationMessageFor(model => model.SemesterGuid, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputCity">StudentName</label>
+                <input name="StudentName" placeholder="Enter Name" class="form-control" />
+            </div>
+        </div>
+        <button class="btn btn-primary btn-sm" type="submit">Submit</button>
+        <button class="btn btn-primary btn-sm" type="reset">reset</button>
+    </form>
+</section>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#StreamGuid").change(function () {
+            $.get("/Addmission/SemesterListById", { StreamGuid: $("#StreamGuid").val() }, function (data) {
+                $("#SemesterGuid").empty();
+                $.each(data, function (index, row) {
+                    $("#SemesterGuid").append("<option value='" + row.SemesterGuid + "'>" + row.Semester + "</option>")
+                })
+            })
+        })
+    });
+</script>

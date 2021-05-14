@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <section class="page-title-section overlay" data-background="https://aliceblueonline.com/contact-us/img/banner.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <ul class="list-inline custom-breadcrumb" @*data-aos="fade-right" data-aos-anchor="#example-anchor" data-aos-offset="500" data-aos-duration="800"*@>
+                        <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="courses.html">Contact Us</a></li>
+                        <li class="list-inline-item text-white h3 font-secondary "></li>
+                    </ul>
+                    <p class="text-lighten" @*data-aos="fade-right" data-aos-anchor="#example-anchor" data-aos-offset="500" data-aos-duration="800" data-aos-delay="250"*@>Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-gray">
+        @if (ViewBag.IsShowAlert == true)
+        {
+            <div class="container" style="transform: translate(-61px, 10px);">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Ok Succeded</strong> @ViewBag.BannerLog
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="section-title">Contact Us</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-7 mb-4 mb-lg-0">
+                        <form action="/Home/Contact" method="post" enctype="multipart/form-data">
+                            <input type="text" class="form-control mb-3" id="name" name="CustomerName" placeholder="Your Name">
+                            <input type="email" class="form-control mb-3" id="mail" name="CustomerEmail" placeholder="Your Email">
+                            <input type="text" class="form-control mb-3" id="subject" name="ReportSubject" placeholder="Subject">
+                            <textarea name="ReportDetails" id="message" class="form-control mb-3" placeholder="Your Message"></textarea>
+                            <label>Upload Error Image</label><br />
+                            <input type="file" name="UploadFile" class="form-control mb-3" /><br />
+                            <button type="submit" value="send" class="btn btn-primary">SEND MESSAGE</button>
+                        </form>
+                    </div>
+                    <div class="col-lg-5">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3604.3400685583656!2d88.38001021448837!3d25.393424929943954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39fb3c99eed5505f%3A0x72ce2210e9b5708e!2sKITM%20COLLEGE!5e0!3m2!1sen!2sin!4v1617722433077!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        <a href="tel:+8802057843248" class="text-color h5 d-block">+880 20 5784 3248</a>
+                        <a href="mailto:yourmail@email.com" class="mb-5 text-color h5 d-block">yourmail@email.com</a>
+                        <p>71 Shelton Street<br>London WC2H 9JQ England</p>
+                    </div>
+                </div>
+                <p><strong>*For any query please contact us.</strong></p>
+            </div>
+        }
+        else
+        {
+            <div class="container" style="transform: translate(-61px, 10px);">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="section-title">Contact Us</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-7 mb-4 mb-lg-0">
+                        <form action="/Home/Contact" method="post" enctype="multipart/form-data">
+                            <input type="text" class="form-control mb-3" id="name" name="CustomerName" placeholder="Your Name">
+                            <input type="email" class="form-control mb-3" id="mail" name="CustomerEmail" placeholder="Your Email">
+                            <input type="text" class="form-control mb-3" id="subject" name="ReportSubject" placeholder="Subject">
+                            <textarea name="ReportDetails" id="message" class="form-control mb-3" placeholder="Your Message"></textarea>
+                            <label>Upload Error Image</label><br />
+                            <input type="file" name="UploadFile" class="form-control mb-3" /><br />
+                            <button type="submit" value="send" class="btn btn-primary btn-sm">SEND MESSAGE</button>
+                        </form>
+                    </div>
+                    <div class="col-lg-5">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3604.3400685583656!2d88.38001021448837!3d25.393424929943954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39fb3c99eed5505f%3A0x72ce2210e9b5708e!2sKITM%20COLLEGE!5e0!3m2!1sen!2sin!4v1617722433077!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        <a href="tel:+8802057843248" class="text-color h5 d-block">+880 20 5784 3248</a>
+                        <a href="mailto:yourmail@email.com" class="mb-5 text-color h5 d-block">yourmail@email.com</a>
+                        <p>71 Shelton Street<br>London WC2H 9JQ England</p>
+                    </div>
+                </div>
+                <p><strong>*For any query please contact us.</strong></p>
+            </div>
+        }
+    </section>
+</body>
+</html>

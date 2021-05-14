@@ -1,0 +1,22 @@
+﻿@model CMS.MODEL.Master.DropDownListModel
+
+@{
+    ViewBag.Title = "Dropdowns";
+    Layout = null;
+}
+
+@using (Html.BeginForm("Dropdowns", "AdminPortal", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.BookName, new SelectList(ViewBag.BookNames, "BookGuid", "BookName"), "Select Your Book..", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BookGuid, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+}
+

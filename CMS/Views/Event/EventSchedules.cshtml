@@ -1,0 +1,103 @@
+﻿@model Tuple<List<CMS.MODEL.Event.EventScheduleEditModel>, List<CMS.MODEL.Event.EventCardModel>>
+@{
+    ViewBag.Title = "EventSchedules";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600;900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/4b9ba14b0f.js" crossorigin="anonymous"></script>
+    <link href="~/Styles/Event/ViewEventCards/EventCard.css" rel="stylesheet" />
+    <link href="~/Styles/GlobalCssProperties/GlobalProperties.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    <section class="page-title-section overlay" id="SectionImageCanvas">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <ul class="list-inline custom-breadcrumb" data-aos="fade-right">
+                        <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="">Events</a></li>
+                        <li class="list-inline-item text-white h3 font-secondary nasted">Schedules</li>
+                    </ul>
+                    <p class="text-lighten" data-aos="fade-right" data-aos-delay="150">Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /page title -->
+    <!-- courses -->
+    <section class="section">
+        <div>
+            <h4 class="TexTAlignmentMiddle">Event Schedules</h4>
+        </div>
+        <div class="container">
+
+            <div class="row">
+                <!-- event -->
+                @foreach (var item in Model.Item1)
+                {
+                    <div class="col-lg-4 col-sm-6 mb-5">
+                        <div class="card rounded-0 hover-shadow" data-aos="flip-left" data-aos-duration="1000">
+                            <div class="card-img position-relative">
+                                <img class="card-img-top rounded-0" src="@Url.Content(@item.ImagePath)" alt="event thumb" id="ImagePathForSection">
+                                <div class="card-date"><span class="FontStyleAttribute">@item.EventDate.Day</span><br>@item.MonthName</div>
+                            </div>
+                            <div class="card-body">
+                                <!-- location -->
+                                <p data-aos="fade-up"><i class="ti-location-pin text-primary mr-2"></i>ScheduleName : @item.EventScheduleName</p>
+                                <p data-aos="fade-up" data-aos-delay="100"><i class="ti-location-pin text-primary mr-2"></i>Location : @item.EventName</p>
+                                <p data-aos="fade-up" data-aos-delay="200"><i class="ti-location-pin text-primary mr-2"></i>StartingTime : @item.StartingTime</p>
+                                <p data-aos="fade-up" data-aos-delay="250"><i class="ti-location-pin text-primary mr-2"></i>EndingTime : @item.EndingTime</p>
+                                <a href="event-single.html">
+                                    <h4 class="card-title ">@item.EventShortDetails</h4>
+                                </a>
+                            </div>
+                            <a href="/Event/EventDetails?EviD=@item.EventGuid&SchiD=@item.ScheduleGuid" class="btn btn-primary btn-sm">View Event</a>
+                        </div>
+                    </div>
+                }
+            </div>@*
+            <a href="course-single.html" class="btn btn-primary btn-sm MIddleAlignmentButton">Show More</a>*@
+        </div>
+        <div>
+        </div>
+    </section>
+    <section class="section">
+        <div>
+            <h4 class="TexTAlignmentMiddle">More Events</h4>
+        </div>
+        <div class="container">
+            <div class="row">
+                <!-- event -->
+                @foreach (var item1 in Model.Item2)
+                {
+                    <div class="col-lg-4 col-sm-6 mb-5">
+                        <div class="card rounded-0 hover-shadow" data-aos="flip-left" data-aos-duration="1000">
+                            <div class="card-img position-relative">
+                                <img class="card-img-top rounded-0" src="@Url.Content(@item1.ImagePath)" alt="event thumb">
+                                <div class="card-date"><span>@item1.EventDate.Day</span><br>@item1.MonthName</div>
+                            </div>
+                            <div class="card-body">
+                                <!-- location -->
+                                <p data-aos="fade-up"><i class="ti-location-pin text-primary mr-2"></i>@item1.EventName</p>
+                                <a href="event-single.html">
+                                    <h4 class="card-title" data-aos="fade-up" data-aos-delay="100">@item1.EventName</h4>
+                                </a>
+                            </div>
+                            <a href="/Event/EventSchedules?EviD=@item1.EventGuid" class="btn btn-primary btn-sm">View Event</a>
+                        </div>
+                    </div>
+                }
+            </div>
+            <button class="btn btn-primary btn-sm" style="transform: translate(-50%, -30%);left: 50%;">More Events</button>
+        </div>
+    </section>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        var imgprop = document.getElementById("ImagePathForSection").src;
+        document.getElementById("SectionImageCanvas").style.backgroundImage = "url('" + imgprop + "')";
+        AOS.init();
+    </script>
+</body>
+</html>

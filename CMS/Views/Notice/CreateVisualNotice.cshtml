@@ -1,0 +1,163 @@
+﻿@model CMS.MODEL.Notice.VisualNoticeEditModel
+@{
+    ViewBag.Title = "CreateVisualNotice";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="~/Styles/GlobalCssProperties/Styleseet2.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <ul class="list-inline custom-breadcrumb">
+                        <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="page-link">Notice</a></li>
+                        <li class="list-inline-item text-white h3 font-secondary"></li>
+                    </ul>
+                    <p class="text-lighten">Do you have other questions? Don't worry, there aren't any dumb questions. Just fill out the form below and we'll get back to you as soon as possible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /page title -->
+    <!-- contact -->
+    <section class="section bg-gray">
+        @if (ViewBag.IsSuccess == true)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Congratulations</strong> You have added new Notice successfully. <br />
+                Click <a asp-controller="Book" asp-action="GetBook" asp-route-id="@ViewBag.NoticeName">here</a> to view the details
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+        <div class="container">
+            <form method="post" action="/Notice/CreateTextNotice" enctype="multipart/form-data">
+                <div>
+                    <div class="form-group" style="text-align:center">
+                        <label for="exampleFormControlTextarea2">Notice Header</label>
+                        <textarea class="form-control" name="NoticeHeader" id="exampleFormControlTextarea2" rows="3" placeholder="This Part Of Notice Will Describe Type Of Notice. Write Something in 30-40 words." required spellcheck="true"></textarea>
+                    </div>
+                    <img src="@Url.Content("~/Upload ProjectData/AdminPortalImages/NoticeTemplates/CollegeBanner.PNG")" style="width:100%;" alt="CollegeBanner image">
+                    <div>
+                        <div class="row" style="justify-content:space-between;margin-top:20px;">
+                            <div class="col-md-4 mb-3">
+                                <label for="RefCode">REF Code</label>
+                                <input type="text" name="RefNo" id="RefCode" class="form-control" placeholder="REF.NO" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="NOticedate">Notice Date</label>
+                                <input type="date" name="NoticeDate" id="NOticedate" class="form-control" placeholder="Date" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-md-4 mb-3" style="position: relative;top: 50%;left: 50%;transform: translate(-50%, -50%);">
+                            <label for="RefCode">Notice Title</label>
+                            <input type="text" name="NoticeTitle" id="RefCode" class="form-control" placeholder="Title" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="file-upload">
+                            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input1').trigger( 'click' )">Add Image</button>
+
+                            <div class="image-upload-wrap image-upload-wrap1">
+                                <input class="file-upload-input file-upload-input1" name="" type='file' onchange="readURL1(this);" accept="image/*" />
+                                <div class="drag-text">
+                                    <h3>Drag and drop a file or select add Image</h3>
+                                </div>
+                            </div>
+                            <div class="file-upload-content file-upload-content1">
+                                <img class="file-upload-image file-upload-image1" src="#" alt="your image" />
+                                @*<div class="image-title-wrap">
+                                    <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group AlinItem1">
+                        <label for="exampleFormControlTextarea1" style="position: relative;top: 50%;left: 44%;transform: translate(-50%, -2%);">Uplaod Signature</label>
+                        <div class="file-upload" style="width:274px;height:162px">
+                            <button class="file-upload-btn" type="button" onclick="$('#file-upload-input').trigger( 'click' )">Add Image</button>
+
+                            <div class="image-upload-wrap" id="image-upload-wrap" style="height:69px;">
+                                <input class="file-upload-input" id="file-upload-input" name="UploadSignatureFile" type='file' onchange="readURL(this);" accept="image/*" />
+                                <div class="drag-text ALinItemText">
+                                    <h6 style="color:green">Choose File....</h6>
+                                </div>
+                            </div>
+                            <div class="file-upload-content" id="file-upload-content">
+                                <img class="file-upload-image" id="file-upload-image" style="height:109px;" src="#" alt="your image" />
+                                @*<div class="image-title-wrap">
+                                    <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                                </div>*@
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm">Create Notice</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $("#image-upload-wrap").hide();
+
+                    $("#file-upload-image").attr('src', e.target.result);
+                    $("#file-upload-content").show();
+
+                    $("#image-title").html(input.files[0].name);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            } else {
+                removeUpload();
+            }
+        }
+
+        function readURL1(input) {
+            if (input.files && input.files[0]) {
+
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.image-upload-wrap1').hide();
+
+                    $('.file-upload-image1').attr('src', e.target.result);
+                    $('.file-upload-content1').show();
+
+                    $('.image-title1').html(input.files[0].name);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            } else {
+                removeUpload();
+            }
+        }
+
+        function removeUpload() {
+            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+            $('.file-upload-content').hide();
+            $('.image-upload-wrap').show();
+        }
+        $('.image-upload-wrap').bind('dragover', function () {
+            $('.image-upload-wrap').addClass('image-dropping');
+        });
+        $('.image-upload-wrap').bind('dragleave', function () {
+            $('.image-upload-wrap').removeClass('image-dropping');
+        });
+
+    </script>
+</body>
+</html>

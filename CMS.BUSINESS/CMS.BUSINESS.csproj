@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{218D62EE-7CE1-4CA9-B3ED-258588AB9D29}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CMS.BUSINESS</RootNamespace>
+    <AssemblyName>CMS.BUSINESS</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Business\Addmission\NewStudentAddmissionBusiness.cs" />
+    <Compile Include="Business\Addmission\StudentFessBusiness.cs" />
+    <Compile Include="Business\Event\EventBusiness.cs" />
+    <Compile Include="Business\Library\BooksControlBusiness.cs" />
+    <Compile Include="Business\Library\LibraryBusiness.cs" />
+    <Compile Include="Business\Master\AccountBusiness.cs" />
+    <Compile Include="Business\Master\AdminPortal\AdminPortalBusiness.cs" />
+    <Compile Include="Business\Master\ContactUs\ContactUsBusiness.cs" />
+    <Compile Include="Business\Master\Course\CourseBusiness.cs" />
+    <Compile Include="Business\Master\Exam\ExamBusiness.cs" />
+    <Compile Include="Business\Master\HomePage\HomePageBusiness.cs" />
+    <Compile Include="Business\Notice\NoticeBusiness.cs" />
+    <Compile Include="Business\Teachers\TeachersBusiness.cs" />
+    <Compile Include="Business\User\UserStudentsBusiness.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="IBusiness\IAddmission\INewStudentAddmissionBusiness.cs" />
+    <Compile Include="IBusiness\IAddmission\IStudentFessBusiness.cs" />
+    <Compile Include="IBusiness\IEvent\IEventBusiness.cs" />
+    <Compile Include="IBusiness\ILibrary\IBooksControlBusiness.cs" />
+    <Compile Include="IBusiness\ILibrary\ILibraryBusiness.cs" />
+    <Compile Include="IBusiness\IMaster\IAccountBusiness.cs" />
+    <Compile Include="IBusiness\IMaster\IAdminPortal\IAdminPortalBusiness.cs" />
+    <Compile Include="IBusiness\IMaster\IContactUs\IContactUsBusiness.cs" />
+    <Compile Include="IBusiness\IMaster\ICourse\ICourseBusiness.cs" />
+    <Compile Include="IBusiness\IMaster\IExam\IExamBusiness.cs" />
+    <Compile Include="IBusiness\IMaster\IHomePage\IHomePageBusiness.cs" />
+    <Compile Include="IBusiness\INotice\INoticeBusiness.cs" />
+    <Compile Include="IBusiness\ITeachers\ITeachersBusiness.cs" />
+    <Compile Include="IBusiness\IUser\IUserStudentsBusiness.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CMS.MODEL\CMS.MODEL.csproj">
+      <Project>{c6b43a85-1bc3-465a-9335-4f5eb0bdf85a}</Project>
+      <Name>CMS.MODEL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CMS.REPOSITORY\CMS.REPOSITORY.csproj">
+      <Project>{c741f94f-4019-4df6-9ea7-129b3561c351}</Project>
+      <Name>CMS.REPOSITORY</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CMS.UTILITIES\CMS.UTILITIES.csproj">
+      <Project>{3dc4bdbe-c6ca-46aa-b9ec-0bd8347a7ae4}</Project>
+      <Name>CMS.UTILITIES</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,265 @@
+﻿@model Tuple<CMS.MODEL.Master.CourseEditModel, List<CMS.MODEL.Master.CourseSemesterModel>>
+@{
+    ViewBag.Title = "UpdateCourseData";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="~/Styles/GlobalCssProperties/Styleseet2.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <ul class="list-inline custom-breadcrumb">
+                        <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="page-link">UpdateCourseData</a></li>
+                        <li class="list-inline-item text-white h3 font-secondary"></li>
+                    </ul>
+                    <p class="text-lighten">Do you have other questions? Don't worry, there aren't any dumb questions. Just fill out the form below and we'll get back to you as soon as possible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section bg-gray">
+        <div class="container">
+            <div>
+                <form action="/AdminPortal/UpdateCourseData" method="post" enctype="multipart/form-data">
+                    <div class="container">
+                        <div class="row"  style="padding-bottom: 22px;">
+                            <div class="col" style="text-align: center;">
+                                <label>Course Name</label>
+                                <div class="ButtonClass1">
+                                    <input name="CourseName" id="CourseNameField" value="@Model.Item1.CourseName" type="text" class="InputStyle" placeholder="Enter CourseName" readonly /><span><i class="bi bi-plus-circle-fill spanover" onclick="MyFunction2()"></i></span>
+                                </div>
+                            </div>
+                            <div class="col-6" style="text-align: center;">
+                                <label>Course Type</label>
+                                <div class="ButtonClass1">
+                                    <input name="CourseType" id="CourseTypeField" type="text" value="@Model.Item1.CourseType" class="InputStyle" placeholder="Enter Course Type.." readonly /><span><i class="bi bi-plus-circle-fill spanover" onclick="MyFunction3()"></i></span>
+                                </div>
+                            </div>
+                            <div class="col" style="text-align: center;">
+                                <label>Per-Semester Fess</label>
+                                <div class="ButtonClass1">
+                                    <input type="number" id="PerSemesterFessField" class="InputStyle" value="@Model.Item1.PerSemesterFess" name="PerSemesterFess" placeholder="Per-Semester Fess" readonly /><span><i class="bi bi-plus-circle-fill spanover" onclick="MyFunction4()"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col" style="text-align: center;">
+                                <label>FullCourseFess</label>
+                                <div class="ButtonClass1">
+                                    <input type="number" id="FullCourseFessField" class="InputStyle" value="@Model.Item1.FullCourseFess" name="FullCourseFess" placeholder="Per-Semester Fess" readonly /><span><i class="bi bi-plus-circle-fill spanover" onclick="MyFunction5()"></i></span>
+                                </div>
+                            </div>
+                            <div class="col-5" style="text-align: center;">
+                                <label>Number Of Semester</label>
+                                <div class="ButtonClass1">
+                                    <input type="number" id="TotalSemesterField" class="InputStyle" value="@Model.Item1.TotalSemester" name="TotalSemester" placeholder="Enter Value" readonly /><span><i class="bi bi-plus-circle-fill spanover" onclick="MyFunction6()"></i></span>
+                                </div>
+                            </div>
+                            <div class="col" style="text-align: center;">
+                                <label>Course Duration</label>
+                                <div class="ButtonClass1">
+                                    <input type="text" id="TotalFessAmountField" class="InputStyle" value="@Model.Item1.CourseDuration" name="CourseDuration" placeholder="Enter Value" readonly /><span><i class="bi bi-plus-circle-fill spanover" onclick="MyFunction7()"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top:20px">
+                        <div class="col-md-5 mb-5" style="text-align: center;">
+                            <div class="form-group">
+                                <h4 style="text-align:center">Course Image</h4>
+                                <img class="img-fluid w-100" src="@Url.Content(@Model.Item1.CourseImagePath)" alt="Course Image">
+                                <input type="text" name="CourseImagePath" value="@Model.Item1.CourseImagePath" hidden/>
+                            </div>
+                            <div class="form-group">
+                                <div class="file-upload">
+                                    <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
+
+                                    <div class="image-upload-wrap">
+                                        <input class="file-upload-input" name="UploadImage" type='file' onchange="readURL(this);" accept="image/*" />
+                                        <div class="drag-text">
+                                            <h3>Drag and drop a file or select add Image</h3>
+                                        </div>
+                                    </div>
+                                    <div class="file-upload-content">
+                                        <img class="file-upload-image" src="#" alt="your image" />
+                                        <div class="image-title-wrap">
+                                            <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-5">
+                            <div style="">
+                                @*<p class="mb-5">
+                                    </p>*@
+                                <div class="form-group" style="text-align: center;">
+                                    <label for="exampleFormControlTextarea1">Course Description</label>
+                                    <textarea class="form-control" name="CourseDetails" id="ControlTextarea1" placeholder="Write Something..." readonly>@Model.Item1.CourseDetails</textarea>
+                                    <br />
+                                    <span><i style="font-size: 36px;cursor:pointer" class="bi bi-pencil-square" onclick="MyFunction()"></i></span>
+                                </div>
+                            </div>
+                            <div class="form-group" style="text-align: center;">
+                                <label for="exampleFormControlTextarea1">Course Requirements</label>
+                                <textarea class="form-control" name="CourseRequirements" id="ControlTextarea2" rows="3" placeholder="Write Something..." readonly>@Model.Item1.CourseRequirements</textarea>
+                                <br />
+                                <span><i style="font-size: 36px;cursor:pointer" class="bi bi-pencil-square" onclick="MyFunction1()"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="text" name="Code" value="@Model.Item1.CourseGuid" hidden/>
+                    <button type="submit" formtarget="" class="btn btn-primary btn-sm buttonStyle">Save Changes</button>
+                </form>
+            </div>
+            <hr style="padding-bottom: 30px;" />
+            <div>
+                <div class="col-12">
+                    <h4 class="mb-4 HeadingStyle">Course Semester List</h4>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>SemesterName</th>
+                                <th>Links</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">
+                            @foreach (var item5 in Model.Item2)
+                            {
+                                <tr id="row_@item5.SemmesterGuid">
+                                    <td>@item5.SemesterName</td>
+                                    <td><a href="#" onclick="ConfirmDelete('@item5.SemmesterGuid','@Model.Item1.CourseGuid')">Delete Semester</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <span style="font-size: 30px;position: relative;top: 50%;left: 48.5%;"><i class="bi bi-plus-circle-fill spanover"></i></span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h3 class="modal-title">Delete Employee</h3>
+                </div>
+                <div class="modal-body">
+                    <h4>Are you sure you want to Remove this Employee?</h4>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                    <a href="#" class="btn btn-success" onclick="DeleteEmployee()">Confirm</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <input type="hidden" id="hiddenEmployeeId" />
+    <input type="hidden" id="hiddenEmployeeId2" />
+    <script>
+        function MyFunction() {
+            document.getElementById("ControlTextarea1").readOnly = false;
+        }
+        function MyFunction1() {
+            document.getElementById("ControlTextarea2").readOnly = false;
+        }
+        function MyFunction2() {
+            document.getElementById("CourseNameField").readOnly = false;
+        }
+        function MyFunction3() {
+            document.getElementById("CourseTypeField").readOnly = false;
+        }
+        function MyFunction4() {
+            document.getElementById("PerSemesterFessField").readOnly = false;
+        }
+        function MyFunction5() {
+            document.getElementById("FullCourseFessField").readOnly = false;
+        }
+        function MyFunction6() {
+            document.getElementById("TotalSemesterField").readOnly = false;
+        }
+        function MyFunction7() {
+            document.getElementById("TotalFessAmountField").readOnly = false;
+        }
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.image-upload-wrap').hide();
+
+                    $('.file-upload-image').attr('src', e.target.result);
+                    $('.file-upload-content').show();
+
+                    $('.image-title').html(input.files[0].name);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            } else {
+                removeUpload();
+            }
+        }
+
+        function removeUpload() {
+            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+            $('.file-upload-content').hide();
+            $('.image-upload-wrap').show();
+        }
+        $('.image-upload-wrap').bind('dragover', function () {
+            $('.image-upload-wrap').addClass('image-dropping');
+        });
+        $('.image-upload-wrap').bind('dragleave', function () {
+            $('.image-upload-wrap').removeClass('image-dropping');
+        });
+
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+        function ConfirmDelete(EmployeeId, EmployeeId2) {
+
+            $("#hiddenEmployeeId").val(EmployeeId);
+            $("#hiddenEmployeeId2").val(EmployeeId2);
+            $("#myModal").modal('show');
+
+        }
+
+        function DeleteEmployee() {
+            var empId = $("#hiddenEmployeeId").val();
+            var empId2 = $("#hiddenEmployeeId2").val();
+
+            $.ajax({
+
+                type: "POST",
+                url: "/AdminPortal/DeleteCourseSemester",
+                data: { CrsId: empId2, SemsId: empId },
+                success: function (result) {
+
+                    $("#myModal").modal("hide");
+                    $("#row_" + empId).remove();
+
+                }
+
+            })
+
+        }
+    </script>
+</body>
+</html>

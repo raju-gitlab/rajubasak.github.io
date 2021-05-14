@@ -1,0 +1,267 @@
+﻿@model Tuple<List<CMS.MODEL.Event.EventEditModel>, List<CMS.MODEL.Event.EventCardModel>>
+@{
+    ViewBag.Title = "EventDetails";
+}
+<!-- page title -->
+ 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    @foreach (var item in Model.Item1)
+    {
+        <section class="page-title-section overlay" style="background-image: url('@Url.Content(@item.ImagePath)')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <ul class="list-inline custom-breadcrumb">
+                            <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="events.html">Events</a></li>
+                            <li class="list-inline-item text-white h3 font-secondary nasted">@item.EventName</li>
+                        </ul>
+                        <p class="text-lighten">Our courses offer a good compromise between the continuous assessment favoured by some universities and the emphasis placed on final exams by others.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+    <!-- /page title -->
+    <!-- event single -->
+    <section class="section-sm">
+        <div class="container">
+            @foreach (var item1 in Model.Item1)
+            {
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="section-title" style="font-family: 'Archivo', sans-serif;">@item1.EventName</h2>
+                    </div>
+                    <!-- event image -->
+                    <div class="col-12 mb-4">
+                        <img src="@Url.Content(@item1.ImagePath)" alt="event thumb" class="img-fluid w-100" />
+                    </div>
+                </div>
+            <!-- event info -->
+                <div class="row align-items-center mb-5">
+                    <div class="col-lg-9">
+                        <ul class="list-inline">
+                            <li class="list-inline-item mr-xl-5 mr-4 mb-3 mb-lg-0">
+                                <div class="d-flex align-items-center">
+                                    <i class="ti-location-pin text-primary icon-md mr-2"></i>
+                                    <div class="text-left">
+                                        <h6 class="mb-0">Location</h6>
+                                        <p class="mb-0">@item1.Location</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item mr-xl-5 mr-4 mb-3 mb-lg-0">
+                                <div class="d-flex align-items-center">
+                                    <i class="ti-calendar text-primary icon-md mr-2"></i>
+                                    <div class="text-left">
+                                        <h6 class="mb-0">Date</h6>
+                                        <p class="mb-0">@item1.EventDate</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item mr-xl-5 mr-4 mb-3 mb-lg-0">
+                                <div class="d-flex align-items-center">
+                                    <i class="ti-time text-primary icon-md mr-2"></i>
+                                    <div class="text-left">
+                                        <h6 class="mb-0">Time</h6>
+                                        <p class="mb-0">@item1.StartingTime</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item mr-xl-5 mr-4 mb-3 mb-lg-0">
+                                <div class="d-flex align-items-center">
+                                    <i class="ti-user text-primary icon-md mr-2"></i>
+                                    <div class="text-left">
+                                        <h6 class="mb-0">Total Invitations</h6>
+                                        <p class="mb-0">@item1.TotalInvitations</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item mr-xl-5 mr-4 mb-3 mb-lg-0">
+                                <div class="d-flex align-items-center">
+                                    <i class="ti-time text-primary icon-md mr-2"></i>
+                                    <div class="text-left">
+                                        <h6 class="mb-0">Remain Seats</h6>
+                                        <p class="mb-0">@item1.RemainSeats</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-inline-item mr-xl-5 mr-4 mb-3 mb-lg-0">
+                                <div class="d-flex align-items-center">
+                                    <i class="ti-wallet text-primary icon-md mr-2"></i>
+                                    <div class="text-left">
+                                        <h6 class="mb-0">ENTRY FEE</h6>
+                                        <p class="mb-0">@item1.EntryFee</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 text-lg-right text-left">
+                        <a href="/Event/BookEvent?EviD=bb&SchId=aa" class="btn btn-primary" data-toggle="modal" data-target="#EventBookModal" onclick="myFunction()">Book Now</a>
+                    </div>
+                    <!-- border -->
+                    <div class="col-12 mt-4 order-4">
+                        <div class="border-bottom border-primary"></div>
+                    </div>
+                </div>
+            <!-- event details -->
+                <div class="row">
+                    <div class="col-12 mb-50">
+                        <h3 style="font-family: 'Sora', sans-serif;">About Event</h3>
+                        <p>
+                            @item1.EventDescription
+                        </p>
+                    </div>
+                </div>
+            <!-- gmap -->
+                <section class="section pt-0">
+                    <!-- Google Map -->
+                    <div id="map_canvas" data-latitude="25.3592269" data-longitude="88.3451758"></div>
+                </section>
+            <!-- /gmap -->
+            }
+            <!-- event speakers -->
+            <!--<div class="row">
+            <div class="col-12">
+                <h3 class="mb-4">Event Speakers</h3>
+            </div>-->
+            <!-- speakers -->
+            <!--<div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+                <div class="media">
+                    <img class="mr-3 img-fluid" src="images/event-speakers/speaker-1.jpg" alt="speaker">
+                    <div class="media-body">
+                        <h4 class="mt-0">Jack Mastio</h4>
+                        Teacher
+                    </div>
+                </div>
+            </div>-->
+            <!-- speakers -->
+            <!--<div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+                <div class="media">
+                    <img class="mr-3 img-fluid" src="images/event-speakers/speaker-2.jpg" alt="speaker">
+                    <div class="media-body">
+                        <h4 class="mt-0">John Doe</h4>
+                        Teacher
+                    </div>
+                </div>
+            </div>-->
+            <!-- speakers -->
+            <!--<div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+                <div class="media">
+                    <img class="mr-3 img-fluid" src="images/event-speakers/speaker-3.jpg" alt="speaker">
+                    <div class="media-body">
+                        <h4 class="mt-0">Randy Luis</h4>
+                        Teacher
+                    </div>
+                </div>
+            </div>-->
+            <!-- speakers -->
+            <!--<div class="col-lg-3 col-sm-6 mb-4 mb-lg-0">
+                <div class="media">
+                    <img class="mr-3 img-fluid" src="images/event-speakers/speaker-4.jpg" alt="speaker">
+                    <div class="media-body">
+                        <h4 class="mt-0">Alfred Jin</h4>
+                        Teacher
+                    </div>
+                </div>
+            </div>-->
+            <!-- border -->
+            <!--<div class="col-12 mt-4 order-4">
+                    <div class="border-bottom border-primary"></div>
+                </div>
+            </div>-->
+        </div>
+    </section>
+    <!-- /event single -->
+    <!-- more event -->
+    <section class="section pt-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="section-title">More Events</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <!-- event -->
+                @foreach (var item2 in Model.Item2)
+            {
+                    <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+                        <div class="card border-0 rounded-0 hover-shadow">
+                            <div class="card-img position-relative">
+                                <img class="card-img-top rounded-0" src="@Url.Content(@item2.ImagePath)" alt="event thumb">
+                                <div class="card-date"><span>@item2.EventDate.Day</span><br>@item2.MonthName</div>
+                            </div>
+                            <div class="card-body">
+                                <!-- location -->
+                                <p><i class="ti-location-pin text-primary mr-2"></i><a href="@item2.Location" target="_blank">View Location</a></p>
+                                <a href="event-single.html"><h4 class="card-title">@item2.EventName</h4></a>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                }
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="EventBookModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content rounded-0 border-0 p-4">
+                <div class="modal-header border-0">
+                    <h3>Register</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/Library/TakeBook" method="post" id="setURL">
+                        <div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <input style="height:37px" type="text" name="CustomerName" class="form-control" placeholder="Your Name">
+                                </div>
+                                <div class="col">
+                                    <input style="height:37px" type="text" name="EmailId" class="form-control" placeholder="Your Email">
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-row">
+                                <div class="col">
+                                    <input style="height:37px" type="text" name="ContactNumber" class="form-control" placeholder="Contact Number">
+                                </div>
+                            </div>
+                            <br />
+                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+    function myMap() {
+        var mapProp = {
+            center: new google.maps.LatLng(51.508742, -0.120850),
+            zoom: 5,
+        };
+        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+    }
+    function myFunction() {
+        const arguments = new URLSearchParams(window.location.search);
+        var EvntId = arguments.get('EviD');
+        var CsheduleId = arguments.get('SchiD');
+        document.getElementById("setURL").action = "/Event/BookEvent?Code=" + EvntId + "&Value=" + CsheduleId;
+        }
+        AOS.init();
+    </script>
+    <!-- /more event -->
+</body>
+</html>

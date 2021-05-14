@@ -1,0 +1,92 @@
+﻿@model List<CMS.MODEL.Master.StudentFineModel>
+
+@{
+    ViewBag.Title = "UpdateFine";
+}
+
+<section class="page-title-section overlay" data-background="images/backgrounds/page-title.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <ul class="list-inline custom-breadcrumb">
+                    <li class="list-inline-item"><a class="h2 text-primary font-secondary" href="page-link">UpdateCourseData</a></li>
+                    <li class="list-inline-item text-white h3 font-secondary"></li>
+                </ul>
+                <p class="text-lighten">Do you have other questions? Don't worry, there aren't any dumb questions. Just fill out the form below and we'll get back to you as soon as possible.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section bg-gray">
+    <div class="container">
+        <table class="table table-hover table-bordered resultsnc">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th class="col-md-5 col-xs-5">Student Name</th>
+                    <th class="col-md-4 col-xs-4">LibraryFineAmount</th>
+                    <th class="col-md-3 col-xs-3">FessFineAmount</th>
+                    <th class="col-md-3 col-xs-3">TotalFineAmount</th>
+                    <th class="col-md-3 col-xs-3">CourseName</th>
+                    <th class="col-md-3 col-xs-3">SemesterName</th>
+                    <th class="col-md-3 col-xs-3">Links</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    int i = 1;
+                    <tr>
+                        <th scope="row">@i</th>
+                        <td>@string.Concat(item.FirstName + item.LastName)</td>
+                        <td>@item.FineAmount1</td>
+                        <td>@item.FineAmount2</td>
+                        <td>@item.TotalFineAmount</td>
+                        <td>@item.Course</td>
+                        <td>@item.Semester</td>
+                        <td>
+                          <a href="@item.StudentImagePath" id="ImagePath" data-toggle="modal" data-target="#exampleModalCenter"><i class="bi bi-eye" onclick="Myfunction()"></i></a>
+                          @if (item.TotalFineAmount == 0)
+                          {
+
+                          }
+                          else
+                          {
+                            <a href="/Fess/DepositFess?StudentGuid=@item.StudentGuid"><i class="bi bi-file-plus"></i></a>
+                          }
+                        </td>
+                    </tr>
+                    i++;
+                }
+            </tbody>
+        </table>
+
+    </div>
+</section>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>*@
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="#" id="myImg" alt="img" style="height:100%;width:100%" />
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div>
+    </div>
+</div>
+<script>
+    function Myfunction() {
+        var ImageUrl = document.getElementById('ImagePath').href;
+        var varsplit = ImageUrl.split('localhost:44377');
+        document.getElementById("myImg").src = varsplit[1];
+    }
+</script>
